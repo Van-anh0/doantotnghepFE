@@ -1,0 +1,143 @@
+body{
+  /* margin: 0pt;
+  padding: 0px;
+  height: 150vh; */
+
+}
+.clearfix{clear: both;}
+
+.resume-box{
+  width: 800px; ;
+  height: 1000px; ;
+  margin: 0 auto ;
+  background-color: white;
+
+}
+.box-outer{
+  padding: 30px;
+}
+.box-1{
+  background-color: #26252d;
+  width: 35%;
+  float: left;
+  height: 1000px;
+}
+.box-2{
+  width: 60%;
+  float: left;
+  padding: 20px;
+}
+.profile{
+  width: 100%;
+
+}
+.content{
+  padding: 20px;
+}
+h1{
+  color: #ceced1;
+  font-family: system-ui;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+p{
+  color: #ceced1;
+  font-family: system-ui;
+  font-weight: 300;
+  font-size: 14px;
+  
+}
+.progress{
+  background-color: #333;
+  border-radius: 13px;
+  height: 8px;
+  width: 100%;
+  padding: 3px;
+}
+.progress:after{
+  content: '';
+  display: block;
+  background-color:orange;
+  border-radius: 9px;
+  height: 8px;
+  width: 50%;
+}
+
+.progress1{
+  background-color: #333;
+  border-radius: 13px;
+  height: 8px;
+  width: 100%;
+  padding: 3px;
+}
+.progress1:after{
+  content: '';
+  display: block;
+  background-color:orange;
+  border-radius: 9px;
+  height: 8px;
+  width: 40%;
+}
+
+.progress2{
+  background-color: #333;
+  border-radius: 13px;
+  height: 8px;
+  width: 100%;
+  padding: 3px;
+}
+.progress2:after{
+  content: '';
+  display: block;
+  background-color:orange;
+  border-radius: 9px;
+  height: 8px;
+  width: 80%;
+}
+
+.progress3{
+  background-color: #333;
+  border-radius: 13px;
+  height: 8px;
+  width: 100%;
+  padding: 3px;
+}
+.progress3:after{
+  content: '';
+  display: block;
+  background-color:orange;
+  border-radius: 9px;
+  height: 8px;
+  width: 90%;
+}
+
+.intro{text-align: center;}
+.intro h1{
+  font-size: 40px;
+  font-weight: bold;
+  color: #26252d;
+
+}
+.hr{
+  height: 15px;
+  border: none;
+  background-color: yellow;
+  margin: -45px 20px;
+
+}
+
+.intro-p{
+  color: #7d7d7d;
+  font-family: system-ui;
+  font-weight: 400;
+  font-size: 15px;
+  margin-top: 13%!important;
+}
+
+.intro p{
+  color: #7d7d7d;
+  font-family: system-ui;
+  font-weight: 400;
+  font-size: 15px;
+  margin-top: -5px;
+}
