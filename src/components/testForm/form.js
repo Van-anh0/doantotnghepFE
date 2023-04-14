@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios';
 import actionCVApi from '../../actions/actionCV';
 import { Navigate } from 'react-router-dom';
+import "./form.scss"
 function Form() {
 
     const [info, setInfor] =  useState({
@@ -34,7 +35,7 @@ function Form() {
   return (
     <div>
         
-        <form >
+        <form className='component'>
             <input type="text" name="fullName" value={info.fullName} placeholder="Full name"
             onChange = {change}/>
             <input type="text" name="email" value={info.email} placeholder="Email"

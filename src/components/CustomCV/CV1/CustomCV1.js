@@ -25,7 +25,7 @@ function CustomCV1() {
     <div className="customcv">
         
         <div className="fullname">
-                    <strong>{cvInfo?.fullName}</strong>
+                    <strong><div className='color'>{cvInfo?.fullName}</div></strong>
         </div>
         <div className="duty">
                     Nhân viên Kinh Doanh
@@ -34,8 +34,8 @@ function CustomCV1() {
         <div className="info">
             Ngày sinh: 01-01-1992 <br/>
             Giới tính: Nữ <br/>
-            Điện thoại: {cvInfo?.phone} <br/>
-            Email: {cvInfo?.email}<br/>
+          <div className='color'>  Điện thoại: {cvInfo?.phone}</div> <br/>
+           <div className='color'> Email: {cvInfo?.email}</div><br/>
             Địa chỉ: Quận 1, TPHCM
 
         </div>
