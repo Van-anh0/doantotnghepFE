@@ -1,0 +1,57 @@
+.modals.dimmer .ui.scrolling.modal {
+    width: 160vh;
+}
+
+.Modal__Component{
+    background-color: #f2f3f7;
+    border: 2px solid rebeccapurple;
+    width: 160vh;
+    height: 90vh;
+    .Modal__Title{
+        position: relative;
+        text-align: center;
+        padding: 20px;
+        font-size: 30px;
+        font-weight: bold;
+        .close{
+            position: absolute;
+            color: #D21312;
+            top:15px;
+            right: 20px;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    }
+    .Modal__Detail{
+        width: 154vh;
+        height: 78vh;
+        display: flex;
+        padding: 0 20px;
+        justify-content: space-between;
+        align-items: center;
+        .image{
+            height: 100%;
+            width: 130vh;
+            overflow: scroll;
+            img{
+                width: 100%;
+            }
+        }
+        button{
+            cursor: pointer;
+            user-select: none;
+            background-color: white;
+            border: none;
+            font-size: 35px;
+            width: 10vh;
+            height: 70%;
+            padding: 30px;
+            line-height: 1.5em;
+            border-radius: 0 50% 0 50%;
+            font-family: 'Pacifico', cursive;
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        }
+        
+    }
+   
+}
