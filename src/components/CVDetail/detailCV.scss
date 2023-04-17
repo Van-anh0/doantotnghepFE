@@ -1,0 +1,32 @@
+.Detail_CV{
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    
+    .Detail_CustomCV{
+        padding: 20px;
+        background-color: white;
+        box-sizing: content-box;
+        .Detail_CustomCV_Update{
+            width: 120vh;
+            border: 2px solid lightgray;
+            display: flex;
+            padding: 20px;
+            .left{
+                flex: 2;
+                img{
+                  height: 300px;
+                  width: 300px;
+                }
+            }
+
+            .right{
+                flex: 3;
+
+            }
+           
+        }
+    }
+
+}
