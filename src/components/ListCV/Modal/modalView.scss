@@ -1,8 +1,8 @@
 .modals.dimmer .ui.scrolling.modal {
-    width: 160vh;
+    width: auto;
 }
-
 .Modal__Component{
+   
     background-color: #f2f3f7;
     border: 2px solid rebeccapurple;
     width: 160vh;
@@ -44,7 +44,7 @@
             border: none;
             font-size: 35px;
             width: 10vh;
-            height: 70%;
+            height: 400px;
             padding: 30px;
             line-height: 1.5em;
             border-radius: 0 50% 0 50%;
