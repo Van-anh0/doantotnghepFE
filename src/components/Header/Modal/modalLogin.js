@@ -16,7 +16,7 @@ function ModalLogin() {
 
   const handleTabClick = (index) => {
     setActiveTab(index);
-  }
+  };
   const { login, setInfoUser } = useContext(AuthContext);
 
   const initValuesRegister = {
@@ -95,29 +95,29 @@ function ModalLogin() {
     e.preventDefault();
     // console.log('user', accountRegister);
     if (accountRegister.password === rePassword) {
-      actionUserAPI
-        .registerUser(accountRegister)
-        .then(() => {
-          toast.success('Đăng ký thành công', { position: toast.POSITION.TOP_CENTER });
-          setAccount(initValuesRegister);
-          setRePass('');
-        })
-        .catch((error) => {
-          toast.error('Đăng ký thất bại vì username hoặc email đã có người sử dụng rồi!', {
-            position: toast.POSITION.TOP_CENTER,
-          });
+      try {
+        await actionUserAPI.registerUser(accountRegister);
+        toast.success('Đăng ký thành công! Hãy đợi một lát để thực hiện đăng nhập!', {
+          position: toast.POSITION.TOP_CENTER,
         });
+        setAccount(initValuesRegister);
+        setRePass('');
 
-      const { email, password } = accountRegister;
-      // console.log('email đk',email)
-      // console.log('password đk', password)
-      const response = await actionUserAPI.loginUser({ email, password });
-      if (response) {
-        // console.log('log response',response.token)
-        console.log('thành công');
-        login();
-        setInfoUser(response);
-        setIsSuccess(true);
+        // Wait for 2 seconds before login
+        setTimeout(async () => {
+          const { email, password } = accountRegister;
+          const response = await actionUserAPI.loginUser({ email, password });
+          if (response) {
+            console.log('thành công');
+            login();
+            setInfoUser(response);
+            setIsSuccess(true);
+          }
+        }, 1000);
+      } catch (error) {
+        toast.error('Đăng ký thất bại vì username hoặc email đã có người sử dụng rồi!', {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } else {
       toast.error('Xác nhận mật khẩu không đúng rồi bạn ơi!', { position: toast.POSITION.TOP_CENTER });
@@ -149,7 +149,7 @@ function ModalLogin() {
                 <h2>Xin chào!</h2>
                 Hãy đăng nhập để tự do chỉnh sửa lại những CV bạn đã ưng ý nhé!
                 <br />
-                Bạn đã có tài khoản chưa? Nếu chưa hãy <span onClick={() => setActiveTab(1)}>đăng kí ngay nào!</span> 
+                Bạn đã có tài khoản chưa? Nếu chưa hãy <span onClick={() => setActiveTab(1)}>đăng kí ngay nào!</span>
               </div>
               <form onSubmit={submitLogin}>
                 <div className='text_input'>
@@ -207,7 +207,7 @@ function ModalLogin() {
             <div className='Modal__Detail'>
               <div>
                 <h2>Chào mừng bạn đã đến với chúng tôi!</h2>
-                Bạn đã có tài khoản? <span onClick={() => setActiveTab(0)}>Đăng nhập ngay!</span> 
+                Bạn đã có tài khoản? <span onClick={() => setActiveTab(0)}>Đăng nhập ngay!</span>
               </div>
               <form onSubmit={submitRegister}>
                 <div className='text_input'>
