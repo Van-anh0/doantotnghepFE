@@ -49,7 +49,7 @@ function DetailCV() {
   //       [className]: innerText,
   //     }));
   //   };
-
+// sua push len nhanh hphuc
   const submit = async (e) => {
     e.preventDefault();
     console.log('info trong button', infoCV);
