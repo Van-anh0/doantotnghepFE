@@ -1,0 +1,108 @@
+.react-tabs__tab {
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  user-select: none;
+}
+.react-tabs__tab--selected {
+  border: none;
+  color: #38346c;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.react-tabs__tab:focus:after {
+  background: none;
+}
+
+.react-tabs__tab-list {
+  border: none;
+  margin: 10px;
+}
+
+.Modal_Login_Component {
+  background-color: white;
+  width: 80vh;
+  height: 80vh;
+  .Modal__Title {
+    position: relative;
+    padding: 8px 50px;
+    img {
+      height: 75px;
+    }
+    .close {
+      position: absolute;
+      top: -50px;
+      right: 20px;
+      cursor: pointer;
+      color: #38346c;
+      font-size: 40px;
+    }
+  }
+  .Modal__Detail {
+    font-size: 18px;
+    line-height: 1.5em;
+    color: black;
+    padding: 10px 50px;
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+    span{
+      cursor: pointer;
+      color: red;
+    }
+    form {
+      margin: 20px 0;
+      .text_input {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        .text_input_item {
+          margin-top: 2px;
+          border: 1px solid #38346c;
+          width: 98%;
+          padding: 4px;
+          border-radius: 5px;
+          .icon {
+            padding: 0 5px;
+            color: #38346c;
+          }
+          input {
+            width: 90%;
+            height: 100%;
+            outline: none;
+            border: none;
+          }
+        }
+      }
+      button {
+        width: 97%;
+        height: 50px;
+        background-color: #38346c;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+    .login_with {
+      text-align: center;
+      color: gray;
+      .with {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        .button_sm {
+          width: 200px;
+          height: 25px;
+          font-size: 18px;
+          font-family: 'Playfair Display', sans-serif, 'Times New Roman';
+        }
+      }
+    }
+  }
+}

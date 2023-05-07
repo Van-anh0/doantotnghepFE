@@ -10,14 +10,18 @@ function ListCV() {
     <div className="listCV">
         <h2>Danh sách mẫu CV xin việc</h2>
         <div className="components">
-            
+          
             <div className="component__CV">
                 <div className="overlay">
                     <ModalView/>
-                    <div className="btn">
-                        <BsPencilSquare/>
-                        Dùng mẫu
-                    </div>
+                    
+                    <Link to="/cv/detail">
+                        <div className="btn">
+                            <BsPencilSquare/>
+                            Dùng mẫu
+                        </div>
+                    </Link>
+                    
                 </div>
                 <img src="https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png" alt="" />
                 <div className="typeCV">
@@ -60,10 +64,14 @@ function ListCV() {
             <div className="component__CV">
                 <div className="overlay">
                     <ModalView/>
-                    <div className="btn">
-                        <BsPencilSquare/>
-                        Dùng mẫu
-                    </div>
+                    
+                    <Link to="/cv/detail">
+                        <div className="btn">
+                            <BsPencilSquare/>
+                            Dùng mẫu
+                        </div>
+                    </Link>
+                    
                 </div>
                 <img src="https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png" alt="" />
                 <div className="typeCV">
@@ -81,10 +89,14 @@ function ListCV() {
             <div className="component__CV">
                 <div className="overlay">
                     <ModalView/>
-                    <div className="btn">
-                        <BsPencilSquare/>
-                        Dùng mẫu
-                    </div>
+                    
+                    <Link to="/cv/detail">
+                        <div className="btn">
+                            <BsPencilSquare/>
+                            Dùng mẫu
+                        </div>
+                    </Link>
+                    
                 </div>
                 <img src="https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png" alt="" />
                 <div className="typeCV">
@@ -98,49 +110,9 @@ function ListCV() {
                     <div className="color blue"/>
                 </div>
             </div>
-
-            <div className="component__CV">
-                <div className="overlay">
-                    <ModalView/>
-                    <div className="btn">
-                        <BsPencilSquare/>
-                        Dùng mẫu
-                    </div>
-                </div>
-                <img src="https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png" alt="" />
-                <div className="typeCV">
-                    Thanh lịch
-                </div>
-                <div className="colors">
-                    <div className="color red"/>
-                    <div className="color green"/>
-                    <div className="color red"/>
-                    <div className="color green"/>
-                    <div className="color blue"/>
-                </div>
-            </div>
-
-            <div className="component__CV">
-                <div className="overlay">
-                    <ModalView/>
-                    <div className="btn">
-                        <BsPencilSquare/>
-                        Dùng mẫu
-                    </div>
-                </div>
-                <img src="https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png" alt="" />
-                <div className="typeCV">
-                    Thanh lịch
-                </div>
-                <div className="colors">
-                    <div className="color red"/>
-                    <div className="color green"/>
-                    <div className="color red"/>
-                    <div className="color green"/>
-                    <div className="color blue"/>
-                </div>
-            </div>
+           
         </div>
+        
     </div>
   )
 }

@@ -1,0 +1,74 @@
+.history_CV {
+  padding: 50px 100px;
+  padding-top: 100px;
+  .list_history_components {
+    .history_component {
+      width: 100%;
+      height: 300px;
+      background-color: white;
+      display: flex;
+      position: relative;
+      gap: 60px;
+      align-items: center;
+      padding: 20px;
+      line-height: 2em;
+      border-radius: 5px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      img {
+        width: 250px;
+        height: 100%;
+      }
+      .custom_history {
+        width: 115vh;
+        .content {
+          .title {
+            font-size: 26px;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          .dateTime {
+            font-size: 19px;
+          }
+          .function{
+            display: flex;
+            gap:20px;
+            margin-top: 10px;
+            .btn{
+                width: 150px;
+                height: 50px;
+                border: 2px solid #37306b;
+                color: #37306b;
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+          }
+          
+        }
+      }
+
+      .remove-icon{
+        position: absolute;
+        cursor: pointer;
+        right: 10px;
+        font-weight: bold;
+        top:10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        gap: 6px;
+        svg{
+          font-size: 22px;
+        }
+
+      }
+    }
+  }
+}

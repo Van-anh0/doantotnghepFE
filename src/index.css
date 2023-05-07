@@ -1,19 +1,31 @@
 body {
   margin: 0;
-  font-family: 'Kanit', sans-serif,'Times New Roman', Times, serif;
+  font-family: 'Playfair Display', sans-serif, 'Times New Roman', Times, serif;
   background-color: #f2f3f7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-   font-size: 18px;
-
+  font-size: 18px;
 }
 
-*{
+button {
+  font-family: 'Playfair Display', sans-serif, 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+input {
+  font-family: 'Playfair Display', sans-serif, 'Times New Roman', Times, serif;
+}
+
+* {
   box-sizing: unset;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: 'Kanit', sans-serif,'Times New Roman', Times, serif;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Playfair Display', sans-serif, 'Times New Roman', Times, serif;
   line-height: 1.28571429em;
   margin: calc(2rem - 0.14285714em) 0 1rem;
   font-weight: 700;
