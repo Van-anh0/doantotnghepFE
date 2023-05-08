@@ -12,6 +12,16 @@
             color: white;
             line-height: 1.8em;
         }
+        .footer__component{
+            .icon{
+                margin-right: 140px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                border-radius: 50px;
+            
+            }
+        }
     }
     
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 import "./footer.scss"
-
+import{ AiFillFacebook} from'react-icons/ai';
+import{SiZalo} from'react-icons/si';
+import{SiGmail} from'react-icons/si';
 function Footer() {
   return (
     <div className="footer">
@@ -13,6 +15,11 @@ function Footer() {
 
             <div className="footer__component">
                 Liên hệ với chúng tôi
+                <div className="icon">
+                <div><AiFillFacebook/> : CV Online</div>
+                <div><SiZalo/> : 09271839485</div>
+                <div><SiGmail/> : CV Online@gmail.com</div>
+                </div>
             </div>
 
             <div className="footer__component">
