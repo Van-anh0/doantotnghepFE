@@ -4,10 +4,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/home';
 import Detail from './pages/Detail/detail';
 import HistoryCVPage from './pages/HistoryCV/HistoryCVPage';
+
 export const AuthContext = createContext();
 
 function App() {
-  const [infoUser, setInfoUser] = useState({})
+  const [infoUser, setInfoUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const login = () => {
     setIsAuthenticated(true);

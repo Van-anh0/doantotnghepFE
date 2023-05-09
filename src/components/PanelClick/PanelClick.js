@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './PanelClick.scss';
+
 function PanelClick() {
   const [fontSize, setFontSize] = useState('4');
   const [FontFamily, setFontFamily] = useState('Times New Roman');
@@ -69,6 +70,7 @@ function PanelClick() {
           <option value='Lobster'>Lobster</option>
           <option value='Open Sans'>Open Sans</option>
           <option value='Playfair Display'>Playfair Display</option>
+          <option value='Fira Sans Condensed'>Fira Sans Condensed</option>
         </select>
       </div>
     </div>

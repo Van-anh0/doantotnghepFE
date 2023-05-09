@@ -10,6 +10,7 @@ import actionUserAPI from '../../../actions/actionUser';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../../App';
+import { validateForm } from '../../../common/validate';
 
 function ModalLogin() {
   const [activeTab, setActiveTab] = useState(0);
@@ -33,6 +34,7 @@ function ModalLogin() {
   const [rePassword, setRePass] = useState('');
   const [accountLogin, setAccountLg] = useState(initValuesLogin);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   //khi login thành công thì tự động tắt modal
   useEffect(() => {
@@ -65,62 +67,71 @@ function ModalLogin() {
     e.preventDefault();
     setIsSuccess(false);
     // console.log('user', accountLogin);
-    try {
-      const response = await actionUserAPI.loginUser(accountLogin);
+    const errors = validateForm(accountLogin);
+    if (Object.keys(errors).length === 0) {
+      try {
+        const response = await actionUserAPI.loginUser(accountLogin);
 
-      if (response) {
-        // console.log('log response',response.token)
-        console.log('thành công');
+        if (response) {
+          // console.log('log response',response.token)
+          console.log('thành công');
 
-        // Hiển thị thông báo đăng nhập thành công
-        toast.success('Đăng nhập thành công', { position: toast.POSITION.TOP_CENTER });
-        //cho tất cả component trên toàn project biết user đã đăng nhập
-        login();
-        setInfoUser(response);
-        //cho biết đã đến lúc thoát modal và đổi giao diện 'đăng nhập/đăng ký' thành avatar user
-        setIsSuccess(true);
-        setAccountLg(initValuesLogin);
-      } else {
+          // Hiển thị thông báo đăng nhập thành công
+          toast.success('Đăng nhập thành công', { position: toast.POSITION.TOP_CENTER });
+          //cho tất cả component trên toàn project biết user đã đăng nhập
+          login();
+          setInfoUser(response);
+          //cho biết đã đến lúc thoát modal và đổi giao diện 'đăng nhập/đăng ký' thành avatar user
+          setIsSuccess(true);
+          setAccountLg(initValuesLogin);
+        }
+      } catch (error) {
         // Hiển thị thông báo đăng nhập thất bại
-        toast.error('Đăng nhập thất bại', { position: toast.POSITION.TOP_CENTER });
+        toast.error('Đăng nhập thất bại bởi vì email không tồn tại hoặc mật khẩu không đúng!', {
+          position: toast.POSITION.TOP_CENTER,
+        });
         console.log('thất bại');
       }
-    } catch (error) {
-      toast.error('Đăng nhập thất bại', { position: toast.POSITION.TOP_CENTER });
-      console.log('thất bại');
+    } else {
+      toast.error(errors.all, { position: toast.POSITION.TOP_CENTER });
     }
   };
 
   const submitRegister = async (e) => {
     e.preventDefault();
     // console.log('user', accountRegister);
-    if (accountRegister.password === rePassword) {
-      try {
-        await actionUserAPI.registerUser(accountRegister);
-        toast.success('Đăng ký thành công! Hãy đợi một lát để thực hiện đăng nhập!', {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        setAccount(initValuesRegister);
-        setRePass('');
+    const errors = validateForm(accountRegister, rePassword);
+    if (Object.keys(errors).length === 0) {
+      if (accountRegister.password === rePassword) {
+        try {
+          await actionUserAPI.registerUser(accountRegister);
+          toast.success('Đăng ký thành công! Hãy đợi một lát để thực hiện đăng nhập!', {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          setAccount(initValuesRegister);
+          setRePass('');
 
-        // Wait for 2 seconds before login
-        setTimeout(async () => {
-          const { email, password } = accountRegister;
-          const response = await actionUserAPI.loginUser({ email, password });
-          if (response) {
-            console.log('thành công');
-            login();
-            setInfoUser(response);
-            setIsSuccess(true);
-          }
-        }, 1000);
-      } catch (error) {
-        toast.error('Đăng ký thất bại vì username hoặc email đã có người sử dụng rồi!', {
-          position: toast.POSITION.TOP_CENTER,
-        });
+          // Wait for 0.01 seconds before login
+          setTimeout(async () => {
+            const { email, password } = accountRegister;
+            const response = await actionUserAPI.loginUser({ email, password });
+            if (response) {
+              console.log('thành công');
+              login();
+              setInfoUser(response);
+              setIsSuccess(true);
+            }
+          }, 100);
+        } catch (error) {
+          toast.error('Đăng ký thất bại vì email đã có người sử dụng rồi!', {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        }
+      } else {
+        toast.error('Mật khẩu và xác nhận mật khẩu không trùng khớp!', { position: toast.POSITION.TOP_CENTER });
       }
     } else {
-      toast.error('Xác nhận mật khẩu không đúng rồi bạn ơi!', { position: toast.POSITION.TOP_CENTER });
+      toast.error(errors.all, { position: toast.POSITION.TOP_CENTER });
     }
   };
 

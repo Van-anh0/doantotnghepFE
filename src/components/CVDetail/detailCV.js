@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import './detailCV.scss';
 import { BsGenderAmbiguous, BsTelephone } from 'react-icons/bs';
 import { FaBirthdayCake } from 'react-icons/fa';
@@ -9,7 +9,8 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import h1 from '../../Asset/avatar.jpg';
 import Uploader from './items/Uploader';
-import vi from '../../data/vi.json'
+import vi from '../../data/vi.json';
+import { AuthContext } from '../../App';
 
 function DetailCV() {
   const [suc, setSuc] = useState(false);
@@ -52,6 +53,7 @@ function DetailCV() {
 
   const submit = async (e) => {
     e.preventDefault();
+    
     console.log('info trong button', infoCV);
     actionCVApi
       .createCV(infoCV)
@@ -64,11 +66,9 @@ function DetailCV() {
       });
   };
 
- 
-
   const handlePrint = () => {
     // Tạo một ảnh chụp màn hình từ component
-    html2canvas(componentRef.current).then((canvas) => {
+    html2canvas(componentRef.current, { scale: 4 }).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
 
       // Tạo đối tượng PDF
@@ -79,8 +79,8 @@ function DetailCV() {
       });
 
       // Thêm ảnh vào PDF
-      pdf.addImage(imgData, 'PNG', 10, 10, 190, 277); // 190mm = A4 width - 20mm margin
-      const fileName = 'example.pdf';
+      pdf.addImage(imgData, 'PNG', 7, 5, 195, 285); // 190mm = A4 width - 20mm margin
+      const fileName = 'CV-online.pdf';
       // Lưu PDF trong callback của html2canvas
       pdf.save(fileName);
     });
@@ -96,35 +96,39 @@ function DetailCV() {
       <div className='Detail_CustomCV'>
         <div ref={componentRef} className='Detail_CustomCV_Update'>
           <div className='left'>
-            <Uploader/>
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='skills'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi["cv.skills"]}
-            >
+            <Uploader />
+            <div>
+              <h2>Kỹ Năng</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='skills'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.skills']}
+              ></div>
             </div>
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='language'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi["cv.language"]}
-            >
+            <div>
+              <h2>Ngoại Ngữ</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='language'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.language']}
+              ></div>
             </div>
-
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='interests'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi["cv.interests"]}
-            >
-              
+            <div>
+              <h2>Sở Thích</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='interests'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.interests']}
+              ></div>
             </div>
           </div>
 
@@ -135,29 +139,24 @@ function DetailCV() {
               className='fullName'
               onSelect={handleSelect}
               onInput={handleChange}
-              data-placeholder={vi["cv.fullname"]}
-            >
-
-            </div>
+              data-placeholder={vi['cv.fullname']}
+            ></div>
             <div
               suppressContentEditableWarning={true}
               contentEditable
               className='applyFor'
               onSelect={handleSelect}
               onInput={handleChange}
-              data-placeholder={vi["cv.applyFor"]}
-            >
-
-            </div>
+              data-placeholder={vi['cv.applyFor']}
+            ></div>
 
             <div className='infoBasic'>
               <div className='info'>
                 <div className='icon'>
-                  {' '}
                   <BsGenderAmbiguous />
                 </div>
                 <div>
-                {vi["cv.gender"]}
+                  {vi['cv.gender']}
                   <span
                     suppressContentEditableWarning={true}
                     className='gender'
@@ -172,7 +171,7 @@ function DetailCV() {
                   <BsTelephone />
                 </div>
                 <div>
-                {vi["cv.phone"]}
+                  {vi['cv.phone']}
                   <span
                     suppressContentEditableWarning={true}
                     className='phone'
@@ -187,7 +186,7 @@ function DetailCV() {
                   <FaBirthdayCake />
                 </div>
                 <div>
-                {vi["cv.birthday"]}
+                  {vi['cv.birthday']}
                   <span
                     suppressContentEditableWarning={true}
                     className='birthday'
@@ -202,7 +201,7 @@ function DetailCV() {
                   <HiOutlineLocationMarker />
                 </div>
                 <div>
-                {vi["cv.address"]}
+                  {vi['cv.address']}
                   <span
                     suppressContentEditableWarning={true}
                     className='address'
@@ -217,7 +216,7 @@ function DetailCV() {
                   <HiOutlineMail />
                 </div>
                 <div>
-                {vi["cv.email"]}
+                  {vi['cv.email']}
                   <span
                     suppressContentEditableWarning={true}
                     className='email'
@@ -228,49 +227,52 @@ function DetailCV() {
                 </div>
               </div>
             </div>
-
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='target'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi["cv.target"]}
-            >
-             
+            <div>
+              <h2>Mục tiêu</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='target'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.target']}
+              ></div>
             </div>
 
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='experience'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi["cv.experience"]}
-            >
-              
+            <div>
+              <h2>Kinh Nghiệm Làm Việc</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='experience'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.experience']}
+              ></div>
             </div>
 
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='education'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi["cv.education"]}
-            >
-             
+            <div>
+              <h2>Học Vấn</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='education'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.education']}
+              ></div>
             </div>
 
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='certificate'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi["cv.certificate"]}
-            >
-              
+            <div>
+              <h2>Chứng Chỉ</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='certificate'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.certificate']}
+              ></div>
             </div>
           </div>
         </div>
