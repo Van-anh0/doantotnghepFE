@@ -66,7 +66,9 @@ export function LoginComponent() {
           </div>
           <div className='dropdown-menu'>
             <ul>
+              <Link to='/cv/user'>
               <li>Thông tin tài khoản</li>
+              </Link>
               <Link to='/cv/history'>
                 <li>Lịch sử tạo CV</li>
               </Link>
