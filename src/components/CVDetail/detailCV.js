@@ -13,6 +13,7 @@ import vi from '../../data/vi.json';
 import { AuthContext } from '../../App';
 
 function DetailCV() {
+  const { infoUser, isAuthenticated, imgCV } = useContext(AuthContext);
   const [suc, setSuc] = useState(false);
   const componentRef = useRef(null);
   const [infoCV, setInfoCV] = useState({
@@ -30,6 +31,7 @@ function DetailCV() {
     birthday: '',
     address: '',
     email: '',
+    avatarCV:'',
   });
 
   const handleSelect = (e) => {
@@ -54,8 +56,12 @@ function DetailCV() {
   const submit = async (e) => {
     e.preventDefault();
     
-    console.log('info trong button', infoCV);
-    actionCVApi
+    if(isAuthenticated === true){
+      infoCV.authorMail = infoUser.email;
+      if(imgCV){
+        infoCV.avatarCV = imgCV;
+      }
+      actionCVApi
       .createCV(infoCV)
       .then(() => {
         setSuc(true);
@@ -64,6 +70,11 @@ function DetailCV() {
       .catch((error) => {
         alert(`Đăng ký không thành công! Gà`);
       });
+    }else{
+      console.log('chưa đăng nhập rùi')
+    }
+   
+    
   };
 
   const handlePrint = () => {

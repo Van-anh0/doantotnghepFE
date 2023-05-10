@@ -1,16 +1,57 @@
-.footer {
-  width: 100%;
-  background-color: #37306b;
-  font-family: 'Kanit', sans-serif, 'Times New Roman', Times, serif;
-  .ft__components {
-    display: flex;
-    justify-content: space-between;
-    padding: 30px;
-    padding-left: 21vh;
-    padding-right: 21vh;
-    .footer__component {
-      color: white;
-      line-height: 1.8em;
-    }
-  }
+.footer{
+    width: 100%;
+    background-color: #37306B;
+    font-family: 'Kanit', sans-serif,'Times New Roman', Times, serif;
+    .ft__components{
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        padding-left: 21vh;
+        padding-right: 21vh;
+        .footer__component{
+            color: white;
+            line-height: 1.8em;
+        }
+        .footer__component {
+            .icon {
+              display: flex;
+              gap: 20px;
+              font-size: 20px;
+              .icon_component {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid lightgray;
+                &.icon-fb {
+                  background-color: #37306b;
+                }
+                &.icon-zl {
+                  background-color: white;
+                }
+                &.icon-gm {
+                  background-color: white;
+                }
+          
+                svg {
+                  &.while {
+                    color: white;
+                    padding-top: 10px;
+                  }
+                  &.red {
+                    color: red;
+                    padding-top: 5px;
+                  }
+          
+                  &.size {
+                    font-size: 28px;
+                    padding-top: 5px;
+                  }
+                }
+              }
+            }
+          }
+        }
 }

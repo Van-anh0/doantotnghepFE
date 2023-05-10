@@ -9,6 +9,7 @@ export const AuthContext = createContext();
 
 function App() {
   const [infoUser, setInfoUser] = useState({});
+  const [imgCV, setImgCV] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const login = () => {
     setIsAuthenticated(true);
@@ -23,7 +24,7 @@ function App() {
   // },[isAuthenticated])
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, infoUser, setInfoUser }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, infoUser, setInfoUser, imgCV, setImgCV }}>
       <div className='App'>
         <BrowserRouter>
           <Routes>
