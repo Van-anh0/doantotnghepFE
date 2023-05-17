@@ -1,7 +1,7 @@
 import React from "react";
 import "./boxText.scss";
 function BoxText() {
-    //hello
+    //hello thanhlich day ne
 
     return(
         <div>
