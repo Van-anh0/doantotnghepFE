@@ -1,6 +1,5 @@
 import React from "react";
 import "./boxText.scss";
-
 function BoxText() {
 
     return(
