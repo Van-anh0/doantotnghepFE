@@ -1,0 +1,27 @@
+.box-text {
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    line-height: 1.6em;
+    margin-left: 170px;
+    margin-right: 170px;
+    margin-bottom: 20px;
+    padding: 20px;
+    h2{
+        color: #37306B;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 6pt;
+        font-family: "Arial";
+        line-height: 1.15;
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        text-align: left;
+    }
+    ul {
+        margin-left: 20px;
+        font-family: "Arial";
+    }
+}

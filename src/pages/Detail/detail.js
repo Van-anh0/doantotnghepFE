@@ -8,7 +8,7 @@ function Detail() {
     <div>
         <Header/>
         <PanelClick/>
-        <DetailCV/>
+        <DetailCV/>   
         <Footer/>
     </div>
   )
