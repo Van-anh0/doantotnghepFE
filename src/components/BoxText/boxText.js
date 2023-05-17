@@ -5,6 +5,7 @@ function BoxText() {
 
     return(
         <div>
+            
         <div className="box-text">
             <h2>TẠO CV ONLINE MIỄN PHÍ VỚI CÁC MẪU CV ĐƯỢC THIẾT KẾ SẴN CHỈ VỚI 3 BƯỚC</h2>
             <ul>
