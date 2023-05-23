@@ -1,16 +1,15 @@
 import React from 'react'
 import Header from '../../components/Header/header'
 import Footer from '../../components/Footer/footer'
-import User from '../../components/Header/User/user'
-
-function UserPage(){
-    return(
-        <div>
+import Manage from '../../components/Header/Manage/manage'
+function ManagePage() {
+  return (
+    <div>
         <Header/>
-        <User/>
+        <Manage/>
         <Footer/>
     </div>
-    )
-    
+  )
 }
-export default UserPage
+
+export default ManagePage
