@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './PanelClick.scss';
+import { Link } from 'react-router-dom';
 
 function PanelClick() {
   const [fontSize, setFontSize] = useState('4');
@@ -74,6 +75,9 @@ function PanelClick() {
             <option value='Fira Sans Condensed'>Fira Sans Condensed</option>
           </select>
         </div>
+        <Link to='/'>
+          <button>Đổi mẫu CV</button>
+        </Link>
       </div>
     </div>
   );
