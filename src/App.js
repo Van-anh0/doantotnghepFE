@@ -42,7 +42,6 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/cv/detail/:id' element={<Detail />} />
             <Route path='/cv/history' element={<HistoryCVPage />} />
-<<<<<<< HEAD
             <Route path='/cv/user' element={<UserPage />} />
             <Route path='/cv/doc' element={<Instruct />} />
             <Route path='/cv/doc/doc1' element={<ContentDoc1/>} />
@@ -53,10 +52,6 @@ function App() {
             <Route path='/cv/doc/doc6' element={<ContentDoc6/>} />
             <Route path='/cv/doc/doc7' element={<ContentDoc7/>} />
             <Route path='/cv/doc/doc8' element={<ContentDoc8/>} />
-=======
-            <Route path='/cv/manage' element={<ManagePage />} />
-            <Route path='/cv/user' element={<UserPage/>}/>
->>>>>>> 83bf73edb4b6d85326069a029a13ea17a0ced6b4
             {/* <Route path="/detail/:email" element = {<CustomCV1/>}/>
           <Route path="/cv1" element = {<Contentcv1/>}/>
           <Route path="/cv2" element = {<Content/>}/>
