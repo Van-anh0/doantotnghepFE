@@ -1,5 +1,5 @@
 import React from 'react';
-import './user.scss';
+// import './user.scss';
 import { Link } from 'react-router-dom'
 import { FiUsers } from 'react-icons/fi';
 import{CiMail} from 'react-icons/ci';

@@ -5,7 +5,7 @@ import { IoMdCloseCircle } from 'react-icons/io';
 import { AiFillEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
-function ModalView() {
+function ModalView({src}) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -29,7 +29,7 @@ function ModalView() {
         </div>
         <div className='Modal__Detail'>
           <div className='image'>
-            <img src='https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' alt='' />
+            <img src={src} alt='' />
           </div>
           <Link to='/cv/detail'>
             <button>Áp dụng mẫu này</button>

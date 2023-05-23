@@ -1,6 +1,50 @@
-.Layout_PanelClick{
+.Layout_PanelClick {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  .layout_click_font {
     display: flex;
-    justify-content: center;
     gap: 50px;
-    margin-top: 100px;
+    padding: 10px 30px;
+    justify-content: center;
+    background-color: white;
+    .fontCustom {
+      border: 1px solid gainsboro;
+      button {
+        background-color: transparent;
+        width: 25px;
+        height: 25px;
+        border: none;
+        outline: none;
+      }
+    }
+    .fontSize {
+        display: flex;
+        gap: 10px;
+      .title{
+        font-size: 16px;
+      }
+      // Tùy chỉnh kiểu hiển thị và màu sắc của dropdown
+      select {
+        // appearance: none;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        outline: none;
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+
+      
+        option {
+          color: #000;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .fontFamily{
+        @extend .fontSize
+    }
+  }
 }
