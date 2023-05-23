@@ -1,0 +1,38 @@
+
+    .table-of-content{
+        margin-top: 70px;
+        background-color: rgb(240, 237, 237);
+        width: 22%;
+        height: 200vh;
+        padding: 8px 10px 10px 12px;
+        ul li {
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        ul ul {
+            margin-left: 20px;
+            padding: 5px;
+        }
+        ul li ul li a{
+            color: #333;
+            font-size: 12px;
+        }
+    }
+    .doc-content{
+        padding: 30px 10px 20px 12px;
+        position: absolute;
+        top: 80px;
+        left: 25%;
+        height: auto;
+        .img{
+            img{
+                width: 50%;
+            }
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 5px;
+        }
+    }
+
+
