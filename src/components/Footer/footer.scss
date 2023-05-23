@@ -38,14 +38,16 @@
                 svg {
                   &.while {
                     color: white;
+                    padding-top: 10px;
                   }
                   &.red {
                     color: red;
+                    padding-top: 5px;
                   }
           
                   &.size {
                     font-size: 28px;
-                    padding-top: 10px;
+                    padding-top: 5px;
                   }
                 }
               }

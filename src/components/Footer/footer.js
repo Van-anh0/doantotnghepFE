@@ -16,17 +16,17 @@ function Footer() {
                 Liên hệ với chúng tôi
                 <div className='icon'>
         <div className='icon_component icon-fb'>
-          <a href='https://facebook.com'>
+          <a href='https://facebook.com' target='_blank' rel='noreferrer'>
             <ImFacebook className='while' />
           </a>
         </div>
         <div className='icon_component icon-zl'>
-          <a href='https://zalo.com'>
+          <a href='https://zalo.com' target='_blank' rel='noreferrer' >
             <SiZalo className='size' />
           </a>
         </div>
         <div className='icon_component icon-gm'>
-          <a href='https://gmail.com'>
+          <a href='https://gmail.com' target='_blank' rel='noreferrer'>
             <SiGmail className='red' />
           </a>
         </div>

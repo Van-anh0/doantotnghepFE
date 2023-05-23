@@ -9,7 +9,8 @@ import UserPage from './pages/User/UserPage';
 export const AuthContext = createContext();
 
 function App() {
-  const [infoUser, setInfoUser] = useState({})
+  const [infoUser, setInfoUser] = useState({});
+  const [imgCV, setImgCV] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const login = () => {
     setIsAuthenticated(true);
@@ -24,13 +25,13 @@ function App() {
   // },[isAuthenticated])
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, infoUser, setInfoUser }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, infoUser, setInfoUser, imgCV, setImgCV }}>
       <div className='App'>
         <BrowserRouter>
           <Routes>
             {/* <Route path="/" element = {<Form/>}/> */}
             <Route path='/' element={<Home />} />
-            <Route path='/cv/detail' element={<Detail />} />
+            <Route path='/cv/detail/:id' element={<Detail />} />
             <Route path='/cv/history' element={<HistoryCVPage />} />
             <Route path='/cv/manage' element={<ManagePage />} />
             <Route path='/cv/user' element={<UserPage/>}/>
