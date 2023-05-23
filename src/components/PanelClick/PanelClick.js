@@ -30,48 +30,50 @@ function PanelClick() {
 
   return (
     <div className='Layout_PanelClick'>
-      <div className='fontCustom'>
-        <button onClick={handleBoldClick}>
-          <strong>B</strong>
-        </button>
-        <button onClick={handleItalicClick}>
-          <i>I</i>
-        </button>
-        <button onClick={handleUnderlineClick}>
-          <u>U</u>
-        </button>
-      </div>
+      <div className='layout_click_font'>
+        <div className='fontCustom'>
+          <button onClick={handleBoldClick}>
+            <strong>B</strong>
+          </button>
+          <button onClick={handleItalicClick}>
+            <i>I</i>
+          </button>
+          <button onClick={handleUnderlineClick}>
+            <u>U</u>
+          </button>
+        </div>
 
-      <div className='fontSize'>
-        Fontsize
-        <select value={fontSize} onChange={handleFontSizeChange}>
-          <option value='1'>10</option>
-          <option value='2'>13</option>
-          <option value='3'>16</option>
-          <option value='4'>18</option>
-          <option value='5'>24</option>
-          <option value='6'>32</option>
-          <option value='7'>48</option>
-        </select>
-      </div>
+        <div className='fontSize'>
+          <div className='title'>Kích thước chữ:</div>
+          <select value={fontSize} onChange={handleFontSizeChange}>
+            <option value='1'>10</option>
+            <option value='2'>13</option>
+            <option value='3'>16</option>
+            <option value='4'>18</option>
+            <option value='5'>24</option>
+            <option value='6'>32</option>
+            <option value='7'>48</option>
+          </select>
+        </div>
 
-      <div className='fontFamily'>
-        FontFamily
-        <select onChange={handleFontFamilyChange}>
-          <option value='Arial'>Arial</option>
-          <option value='Roboto'>Roboto</option>
-          <option value='Roboto Condensed'>Roboto Condensed</option>
-          <option value='Times New Roman'>Times New Roman</option>
-          <option value='Tahoma'>Tahoma</option>
-          <option value='Verdana'>Verdana</option>
-          <option value='Cormorant'>Cormorant</option>
-          <option value='Open Sans'>Open Sans</option>
-          <option value='Kanit'>Kanit</option>
-          <option value='Lobster'>Lobster</option>
-          <option value='Open Sans'>Open Sans</option>
-          <option value='Playfair Display'>Playfair Display</option>
-          <option value='Fira Sans Condensed'>Fira Sans Condensed</option>
-        </select>
+        <div className='fontFamily'>
+          <div className='title'>Kiểu chữ:</div>
+          <select onChange={handleFontFamilyChange}>
+            <option value='Times New Roman'>Times New Roman</option>
+            <option value='Arial'>Arial</option>
+            <option value='Roboto'>Roboto</option>
+            <option value='Roboto Condensed'>Roboto Condensed</option>
+            <option value='Tahoma'>Tahoma</option>
+            <option value='Verdana'>Verdana</option>
+            <option value='Cormorant'>Cormorant</option>
+            <option value='Open Sans'>Open Sans</option>
+            <option value='Kanit'>Kanit</option>
+            <option value='Lobster'>Lobster</option>
+            <option value='Open Sans'>Open Sans</option>
+            <option value='Playfair Display'>Playfair Display</option>
+            <option value='Fira Sans Condensed'>Fira Sans Condensed</option>
+          </select>
+        </div>
       </div>
     </div>
   );

@@ -95,3 +95,23 @@
     }
   }
 }
+
+.onTopButton{
+  right: 1%;
+  top:90%;
+  position: fixed;
+  height: 3rem;
+  width: 3rem;
+  border: 2px solid white;
+  
+  background-color: #37306b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  svg{
+    color: white;
+    font-size: 25px;
+  }
+}

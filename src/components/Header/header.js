@@ -1,28 +1,38 @@
 import React, { useContext, useState, useEffect } from 'react';
 import logo from '../../Asset/logo-cv-xinh.png';
 import './header.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ModalLogin from './Modal/modalLogin';
 import { AuthContext } from '../../App';
 import { AiOutlineDown, AiFillCaretUp } from 'react-icons/ai';
+import { BsChevronUp } from 'react-icons/bs';
 import actionUserAPI from '../../actions/actionUser';
-
+import { scrollToTop } from '../../utils/scrollTop';
 
 function Header() {
   const { isAuthenticated } = useContext(AuthContext);
   // useEffect(() => {
   //   console.log('datauser', infoUser);
   // }, [infoUser]);
+  const scrollTop = () => scrollToTop('smooth');
+  useEffect(() => {
+    scrollToTop('instant');
+  }, []);
   return (
-    <div className='header'>
-      <Link to='/'>
-        <div className='logo'>
-          <img src={logo} alt='' />
-          CV Online
-        </div>
-      </Link>
-      {isAuthenticated ? <LoginComponent /> : <ModalLogin />}
-    </div>
+    <>
+      <div className='header'>
+        <Link to='/'>
+          <div className='logo'>
+            <img src={logo} alt='' />
+            CV Online
+          </div>
+        </Link>
+        {isAuthenticated ? <LoginComponent /> : <ModalLogin />}
+      </div>
+      <div className='onTopButton' onClick={scrollTop}>
+        <BsChevronUp />
+      </div>
+    </>
   );
 }
 
@@ -31,6 +41,7 @@ export default Header;
 export function LoginComponent() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const { logout, infoUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleDropdownClick = () => {
     setDropdownVisible(!isDropdownVisible);
@@ -44,6 +55,7 @@ export function LoginComponent() {
       const response = await actionUserAPI.logoutUser();
       console.log(response); // Nếu thành công, response sẽ là một chuỗi 'User has been logged out.'
       logout();
+      navigate('/');
     } catch (error) {
       console.log(error); // Nếu có lỗi, error sẽ chứa thông tin lỗi được trả về từ API
     }
@@ -66,7 +78,9 @@ export function LoginComponent() {
           </div>
           <div className='dropdown-menu'>
             <ul>
-              <li>Thông tin tài khoản</li>
+              <Link to='/cv/user'>
+                <li>Thông tin tài khoản</li>
+              </Link>
               <Link to='/cv/history'>
                 <li>Lịch sử tạo CV</li>
               </Link>

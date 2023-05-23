@@ -1,0 +1,13 @@
+.user{
+    margin: 100px;
+    margin-bottom: 38vh;
+    .list_user_component{
+        .tab_component{
+            display: inline-flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 300px;
+            
+        }
+    }
+}

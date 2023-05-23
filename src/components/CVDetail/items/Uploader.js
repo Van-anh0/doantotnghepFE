@@ -13,19 +13,32 @@ function Uploader() {
     inputFileRef.current.click();
   };
 
-  const handleImageChange = (event) => {
-    const selectedFile = event.target.files[0];
-    const objectURL = URL.createObjectURL(selectedFile);
-    setImageURL(objectURL);
-    console.log('test imgurl', imageURL);
+  const handleImageChange = (e) => {
+    // const selectedFile = event.target.files[0];
+    // const objectURL = URL.createObjectURL(selectedFile);
+    // setImageURL(objectURL);
+    // console.log('test imgurl', imageURL);
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImageURL(reader.result);
+      //console.log('dataimg', reader.result)
+      // Convert to base64 string
+      const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+      setImgCV(base64String)
+      // console.log(base64String);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
-  useEffect(() => {
-    if (imageURL !== '') {
-      setImgCV(imageURL);
-    }
-  }, [imageURL]);
-  
+  // useEffect(() => {
+  //   if (imageURL !== '') {
+  //     setImgCV(imageURL);
+  //   }
+  // }, [imageURL]);
+
   return (
     <>
       <form action='action' className={imageURL === '' ? 'form_uploadimg' : 'form_uploadimg yes'} onClick={handleClick}>

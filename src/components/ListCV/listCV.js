@@ -12,9 +12,9 @@ function ListCV() {
       <div className='components'>
         <div className='component__CV'>
           <div className='overlay'>
-            <ModalView />
+            <ModalView src = 'https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' />
 
-            <Link to='/cv/detail'>
+            <Link to='/cv/detail/CV1'>
               <div className='btn'>
                 <BsPencilSquare />
                 Dùng mẫu
@@ -34,9 +34,9 @@ function ListCV() {
 
         <div className='component__CV'>
           <div className='overlay'>
-            <ModalView />
+          <ModalView src = 'https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' />
 
-            <Link to='/cv/detail'>
+            <Link to='/cv/detail/CV2'>
               <div className='btn'>
                 <BsPencilSquare />
                 Dùng mẫu
@@ -56,9 +56,9 @@ function ListCV() {
 
         <div className='component__CV'>
           <div className='overlay'>
-            <ModalView />
+          <ModalView src = 'https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' />
 
-            <Link to='/cv/detail'>
+            <Link to='/cv/detail/CV3'>
               <div className='btn'>
                 <BsPencilSquare />
                 Dùng mẫu
@@ -78,9 +78,53 @@ function ListCV() {
 
         <div className='component__CV'>
           <div className='overlay'>
-            <ModalView />
+          <ModalView src = 'https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' />
 
-            <Link to='/cv/detail'>
+            <Link to='/cv/detail/CV4'>
+              <div className='btn'>
+                <BsPencilSquare />
+                Dùng mẫu
+              </div>
+            </Link>
+          </div>
+          <img src='https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' alt='' />
+          <div className='typeCV'>Thanh lịch</div>
+          <div className='colors'>
+            <div className='color red' />
+            <div className='color green' />
+            <div className='color red' />
+            <div className='color green' />
+            <div className='color blue' />
+          </div>
+        </div>
+
+        <div className='component__CV'>
+          <div className='overlay'>
+          <ModalView src = 'https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' />
+
+            <Link to='/cv/detail/CV5'>
+              <div className='btn'>
+                <BsPencilSquare />
+                Dùng mẫu
+              </div>
+            </Link>
+          </div>
+          <img src='https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' alt='' />
+          <div className='typeCV'>Thanh lịch</div>
+          <div className='colors'>
+            <div className='color red' />
+            <div className='color green' />
+            <div className='color red' />
+            <div className='color green' />
+            <div className='color blue' />
+          </div>
+        </div>
+
+        <div className='component__CV'>
+          <div className='overlay'>
+          <ModalView src = 'https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' />
+
+            <Link to='/cv/detail/CV6'>
               <div className='btn'>
                 <BsPencilSquare />
                 Dùng mẫu

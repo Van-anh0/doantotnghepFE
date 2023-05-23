@@ -1,20 +1,18 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
-import './detailCV.scss';
+import './detailCV2.scss';
 import { BsGenderAmbiguous, BsTelephone } from 'react-icons/bs';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { HiOutlineLocationMarker, HiOutlineMail } from 'react-icons/hi';
-import axios from 'axios';
-import actionCVApi from '../../actions/actionCV';
+import actionCVApi from '../../../actions/actionCV';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import h1 from '../../Asset/avatar.jpg';
-import Uploader from './items/Uploader';
-import vi from '../../data/vi.json';
-import { AuthContext } from '../../App';
+import Uploader from '../items/Uploader';
+import vi from '../../../data/vi.json';
+import { AuthContext } from '../../../App';
+import ContainerColor from '../ChangeColor/ContainerColor';
 
-function DetailCV() {
+function DetailCV2() {
   const { infoUser, isAuthenticated, imgCV } = useContext(AuthContext);
-  const [suc, setSuc] = useState(false);
   const componentRef = useRef(null);
   const [infoCV, setInfoCV] = useState({
     skills: '',
@@ -31,8 +29,14 @@ function DetailCV() {
     birthday: '',
     address: '',
     email: '',
-    avatarCV:'',
+    avatarCV: '',
+    statusCV:'',
   });
+  const [currentColor, setCurrentColor] = useState('');
+
+  const handleClickChangeColor = (color) => {
+    setCurrentColor(color);
+  };
 
   const handleSelect = (e) => {
     const selection = window.getSelection();
@@ -55,34 +59,39 @@ function DetailCV() {
 
   const submit = async (e) => {
     e.preventDefault();
-    
-    if(isAuthenticated === true){
+
+    if (isAuthenticated === true) {
       infoCV.authorMail = infoUser.email;
-      if(imgCV){
+      if (imgCV) {
         infoCV.avatarCV = imgCV;
       }
-      actionCVApi
-      .createCV(infoCV)
-      .then(() => {
-        setSuc(true);
-        alert('Đăng ký thành công');
+
+      html2canvas(componentRef.current, { scale: 4 }).then((canvas) => {
+        const imgData = canvas.toDataURL('image/jpeg');
+        const base64String = imgData.replace('data:', '').replace(/^.+,/, '');
+        infoCV.statusCV = base64String;
       })
-      .catch((error) => {
-        alert(`Đăng ký không thành công! Gà`);
-      });
-    }else{
-      console.log('chưa đăng nhập rùi')
+
+      actionCVApi
+        .createCV(infoCV)
+        .then(() => {
+          // alert('Lưu mẫu cv thành công, vào lịch sử để xem lại nhé!');
+          console.log('Lưu mẫu cv thành công, vào lịch sử để xem lại nhé!');
+        })
+        .catch((error) => {
+          alert(`Lưu mẫu cv không thành công! Gà`);
+        });
+    } else {
+      console.log('chưa đăng nhập rùi');
     }
-   
-    
   };
 
   const handlePrint = () => {
     // Tạo một ảnh chụp màn hình từ component
     html2canvas(componentRef.current, { scale: 4 }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-
-      // Tạo đối tượng PDF
+      const imgData = canvas.toDataURL('image/jpeg');
+      console.log('dataimg', imgData);
+      //Tạo đối tượng PDF
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
@@ -100,50 +109,14 @@ function DetailCV() {
   //     console.log("info",infoCV)
   //   }, [infoCV])
   return (
-    <div className='Detail_CV'>
-      <button onClick={submit}>Hoàn thành</button>
-      <button onClick={handlePrint}>In ra</button>
-
-      <div className='Detail_CustomCV'>
+    <>
+    <ContainerColor handleClick={handleClickChangeColor}/>
+    <div className='Detail_CV2'>
+      <div className='Detail_CustomCV2'>
         <div ref={componentRef} className='Detail_CustomCV_Update'>
-          <div className='left'>
-            <Uploader />
-            <div>
-              <h2>Kỹ Năng</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='skills'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.skills']}
-              ></div>
-            </div>
-            <div>
-              <h2>Ngoại Ngữ</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='language'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.language']}
-              ></div>
-            </div>
-            <div>
-              <h2>Sở Thích</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='interests'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.interests']}
-              ></div>
-            </div>
-          </div>
+          
 
-          <div className='right'>
+          <div className='left'>
             <div
               suppressContentEditableWarning={true}
               contentEditable
@@ -163,7 +136,7 @@ function DetailCV() {
 
             <div className='infoBasic'>
               <div className='info'>
-                <div className='icon'>
+                <div className={`icon ${currentColor}`}>
                   <BsGenderAmbiguous />
                 </div>
                 <div>
@@ -178,7 +151,7 @@ function DetailCV() {
                 </div>
               </div>
               <div className='info'>
-                <div className='icon'>
+                <div className={`icon ${currentColor}`}>
                   <BsTelephone />
                 </div>
                 <div>
@@ -193,7 +166,7 @@ function DetailCV() {
                 </div>
               </div>
               <div className='info'>
-                <div className='icon'>
+                <div className={`icon ${currentColor}`}>
                   <FaBirthdayCake />
                 </div>
                 <div>
@@ -208,7 +181,7 @@ function DetailCV() {
                 </div>
               </div>
               <div className='info'>
-                <div className='icon'>
+                <div className={`icon ${currentColor}`}>
                   <HiOutlineLocationMarker />
                 </div>
                 <div>
@@ -223,7 +196,7 @@ function DetailCV() {
                 </div>
               </div>
               <div className='info mail'>
-                <div className='icon'>
+                <div className={`icon ${currentColor}`}>
                   <HiOutlineMail />
                 </div>
                 <div>
@@ -262,6 +235,32 @@ function DetailCV() {
               ></div>
             </div>
 
+           
+          </div>
+          <div className='right'>
+            <Uploader />
+            <div>
+              <h2>Kỹ Năng</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='skills'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.skills']}
+              ></div>
+            </div>
+            <div>
+              <h2>Ngoại Ngữ</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='language'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.language']}
+              ></div>
+            </div>
             <div>
               <h2>Học Vấn</h2>
               <div
@@ -285,11 +284,25 @@ function DetailCV() {
                 data-placeholder={vi['cv.certificate']}
               ></div>
             </div>
+            <div>
+              <h2>Sở Thích</h2>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='interests'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.interests']}
+              ></div>
+            </div>
           </div>
         </div>
       </div>
+      <button onClick={submit}>Lưu vào lịch sử</button>
+      <button onClick={handlePrint}> In ra</button>
     </div>
+    </>
   );
 }
 
-export default DetailCV;
+export default DetailCV2;

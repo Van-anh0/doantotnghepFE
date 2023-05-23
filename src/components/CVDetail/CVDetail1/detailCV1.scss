@@ -1,6 +1,6 @@
-.Detail_CV {
+.Detail_CV1 {
   width: 100%;
-  margin: 100px 10px;
+  margin: 20px 10px;
 
   display: flex;
   align-items: center;
@@ -20,17 +20,17 @@
     outline: none;
   }
 
-  .Detail_CustomCV {
+  .Detail_CustomCV1 {
     padding: 20px;
     background-color: white;
-    font-family: 'Fira Sans Condensed','Playfair Display', sans-serif, 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
 
     border: 2px solid lightgray;
     .Detail_CustomCV_Update {
       width: 120vh;
       height: 170vh;
       display: flex;
-      gap: 50px;
+      gap: 60px;
       padding: 20px;
 
       h2 {
@@ -90,7 +90,8 @@
         }
 
         .skills {
-          min-height: 100px;
+          min-height: 30px;
+          font-size: 18px;
         }
 
         .skills:hover {
@@ -102,6 +103,14 @@
         }
 
         .interests {
+          @extend .skills;
+        }
+
+        .education {
+          @extend .skills;
+        }
+
+        .certificate {
           @extend .skills;
         }
       }
@@ -117,6 +126,7 @@
           font-size: 24px;
           font-weight: bold;
           text-transform: uppercase;
+          font-family: 'Fira Sans Condensed', 'Playfair Display', sans-serif, 'Times New Roman', Times, serif;
         }
 
         .fullName:hover {
@@ -126,6 +136,7 @@
           font-size: 20px;
           text-transform: none;
           @extend .fullName;
+          font-family: 'Fira Sans Condensed', 'Playfair Display', sans-serif, 'Times New Roman', Times, serif;
         }
 
         .infoBasic {
@@ -141,6 +152,8 @@
             gap: 10px;
             // border: 1px solid yellowgreen;
             cursor: text;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
 
             .icon {
               display: flex;
@@ -152,6 +165,19 @@
               color: white;
               border-radius: 25px;
               padding: 3px;
+              &.blue{
+                background-color: blue;
+              }
+              &.red{
+                background-color: red;
+              }
+              &.purple{
+                background-color: purple;
+              }
+              &.yellow{
+                background-color: #fff2cc;
+              }
+              
             }
             &.mail {
               width: 505px;
@@ -162,6 +188,7 @@
         .target {
           min-height: 100px;
           width: 500px;
+          font-size: 18px;
         }
 
         .target:hover {
@@ -172,13 +199,7 @@
           @extend .target;
         }
 
-        .education {
-          @extend .target;
-        }
-
-        .certificate {
-          @extend .target;
-        }
+      
       }
     }
   }

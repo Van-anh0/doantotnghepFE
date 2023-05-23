@@ -8,7 +8,6 @@ import 'react-tabs/style/react-tabs.css';
 import './modalLogin.scss';
 import actionUserAPI from '../../../actions/actionUser';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../../App';
 import { validateForm } from '../../../common/validate';
 
