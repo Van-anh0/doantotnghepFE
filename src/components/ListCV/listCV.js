@@ -132,7 +132,7 @@ function ListCV() {
             </Link>
           </div>
           <img src='https://cdn1.vieclam24h.vn/images/assets/img/cv34-0559BC.png' alt='' />
-          <div className='typeCV'>Thanh lịch</div>
+          <div className='typeCV'>Cổ điển</div>
           <div className='colors'>
             <div className='color red' />
             <div className='color green' />

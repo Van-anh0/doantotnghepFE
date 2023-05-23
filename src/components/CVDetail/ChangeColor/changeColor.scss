@@ -1,35 +1,35 @@
-.button-container{
-    margin: 20px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-    color: #37306b;
-    font-weight: bold;
+.button-container {
+  margin: 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  color: #37306b;
+  font-weight: bold;
 
-    button{
-        height: 15px;
-        width: 15px;
-        border-radius: 15px;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        &.blue{
-            background-color: blue;
-        }
-        &.red{
-            background-color: red;
-        }
-
-        &.purple{
-            background-color: purple;
-        }
-        &.yellow{
-            background-color: yellow;
-        }
-
-        &.black{
-            background-color: black;
-        }
+  button {
+    height: 15px;
+    width: 15px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    &.blue {
+      background-color: #1d267d;
     }
+    &.red {
+      background-color: #d25380;
+    }
+
+    &.purple {
+      background-color: #5c469c;
+    }
+    &.yellow {
+      background-color: #ffd3b0;
+    }
+
+    &.black {
+      background-color: black;
+    }
+  }
 }
