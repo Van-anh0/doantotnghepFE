@@ -1,0 +1,59 @@
+.hidden-xs{
+    z-index: 99999999;
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 50px;
+    left: 50px;
+    cursor: pointer;
+    
+    .bell-message{
+        z-index: 99999999;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border-radius: 50%;
+        background: rgb(255, 255, 255);
+        text-align: center;
+        .img{
+            position: relative;
+            color: white;
+            top: 3px;
+            width: 70px;
+        }
+        .tool-tip{
+            min-width: 250px;
+            max-width: 300px;
+            min-height: 200px;
+            background: rgb(255, 255, 255);
+            border-radius: 5px;
+            border: 1px solid rgb(241, 241, 241);
+            position: absolute;
+            bottom: 64px;
+            left: 0px;
+            box-shadow: rgb(184, 184, 184) 0px 0px 5px 1px;
+            display: none;
+            .p1{
+                border-bottom: 1px solid rgb(237, 237, 237);
+                padding: 7px;
+                margin: 0 0 10px;
+            }
+            a{
+                color: #337ab7;
+                text-decoration: none;
+                background-color: transparent;
+            }
+            .p2{
+                padding: 3px;
+                font-size: 12px;
+                color: gray;
+                margin-top: 5px;
+                margin: 0 0 10px;
+            }
+        }
+    }
+    
+}
+.hidden-xs > .bell-message:hover .tool-tip{
+    display: block;
+}
