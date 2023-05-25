@@ -43,6 +43,7 @@ function App() {
             <Route path='/cv/detail/:id' element={<Detail />} />
             <Route path='/cv/history' element={<HistoryCVPage />} />
             <Route path='/cv/user' element={<UserPage />} />
+            <Route path='/cv/manage' element={<ManagePage/>} />
             <Route path='/cv/doc' element={<Instruct />} />
             <Route path='/cv/doc/doc1' element={<ContentDoc1/>} />
             <Route path='/cv/doc/doc2' element={<ContentDoc2/>} />
