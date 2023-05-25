@@ -9,7 +9,7 @@ import jsPDF from 'jspdf';
 import Uploader from '../items/Uploader';
 import vi from '../../../data/vi.json';
 import { AuthContext } from '../../../App';
-import ContainerColor from '../ChangeColor/ContainerColor';
+import {ContainerColorBeautiful} from '../ChangeColor/ContainerColor';
 
 function DetailCV5() {
   const { infoUser, isAuthenticated, imgCV } = useContext(AuthContext);
@@ -110,7 +110,7 @@ function DetailCV5() {
   //   }, [infoCV])
   return (
     <>
-      <ContainerColor handleClick={handleClickChangeColor} />
+      <ContainerColorBeautiful handleClick={handleClickChangeColor} />
       <div className='Detail_CV5'>
         <div className='Detail_CustomCV5'>
           <div ref={componentRef} className='Detail_CustomCV_Update'>
@@ -119,7 +119,7 @@ function DetailCV5() {
               <div
                 suppressContentEditableWarning={true}
                 contentEditable
-                className='fullName'
+                className={`fullName ${currentColor}`}
                 onSelect={handleSelect}
                 onInput={handleChange}
                 data-placeholder={vi['cv.fullname']}
@@ -127,18 +127,18 @@ function DetailCV5() {
               <div
                 suppressContentEditableWarning={true}
                 contentEditable
-                className='applyFor'
+                className={`applyFor ${currentColor}`}
                 onSelect={handleSelect}
                 onInput={handleChange}
                 data-placeholder={vi['cv.applyFor']}
               ></div>
 
               <div>
-                <h2>Mục tiêu</h2>
+                <h2 className={`${currentColor}`}>Mục tiêu</h2>
                 <div
                   suppressContentEditableWarning={true}
                   contentEditable
-                  className='target'
+                  className={`target ${currentColor}`}
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.target']}
@@ -146,22 +146,22 @@ function DetailCV5() {
               </div>
 
               <div>
-                <h2>Kỹ Năng</h2>
+                <h2 className={`${currentColor}`}>Kỹ Năng</h2>
                 <div
                   suppressContentEditableWarning={true}
                   contentEditable
-                  className='skills'
+                  className={`skills ${currentColor}`}
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.skills']}
                 ></div>
               </div>
               <div>
-                <h2>Ngoại Ngữ</h2>
+                <h2 className={`${currentColor}`}>Ngoại Ngữ</h2>
                 <div
                   suppressContentEditableWarning={true}
                   contentEditable
-                  className='language'
+                  className={`language ${currentColor}`}
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.language']}
@@ -169,18 +169,18 @@ function DetailCV5() {
               </div>
 
               <div>
-                <h2>Sở Thích</h2>
+                <h2 className={`${currentColor}`}>Sở Thích</h2>
                 <div
                   suppressContentEditableWarning={true}
                   contentEditable
-                  className='interests'
+                  className={`interests ${currentColor}`}
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.interests']}
                 ></div>
               </div>
             </div>
-            <div className='right'>
+            <div className={`right ${currentColor}`}>
               <div className='infoBasic'>
                 <div className='info'>
                   <div className={`icon ${currentColor}`}>
@@ -260,7 +260,7 @@ function DetailCV5() {
               </div>
 
               <div>
-                <h2>Học Vấn</h2>
+                <h2 className={`${currentColor}`}>Học Vấn</h2>
                 <div
                   suppressContentEditableWarning={true}
                   contentEditable
@@ -272,7 +272,7 @@ function DetailCV5() {
               </div>
 
               <div>
-                <h2>Chứng Chỉ</h2>
+                <h2 className={`${currentColor}`}>Chứng Chỉ</h2>
                 <div
                   suppressContentEditableWarning={true}
                   contentEditable
@@ -284,7 +284,7 @@ function DetailCV5() {
               </div>
 
               <div>
-                <h2>Kinh Nghiệm Làm Việc</h2>
+                <h2 className={`${currentColor}`}>Kinh Nghiệm Làm Việc</h2>
                 <div
                   suppressContentEditableWarning={true}
                   contentEditable

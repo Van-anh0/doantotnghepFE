@@ -1,6 +1,51 @@
 .QLuser{
     margin-top: 150px;
     margin-left: 50px;
+    .form_uploadimg {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 5px;
+        height: 300px;
+        width: 200px;
+        position: relative;
+        img {
+          height: 80%;
+          width: 100%;
+        }
+        &.yes {
+          border: none;
+        }
+
+        .btn {
+          position: absolute;
+          width: 95%;
+          height: 50px;
+          color: black;
+          background-color: #fff2cc;
+          border: none;
+          font-size: 20px;
+          cursor: pointer;
+          text-align: center;
+          padding: 5px;
+          opacity: 0;
+        }
+      }
+
+      .form_uploadimg:hover {
+        img {
+          filter: grayscale(100%);
+        }
+
+        .btn {
+          opacity: 0.9;
+          transition: all 0.5s ease;
+          z-index: 1;
+          pointer-events: none;
+        }
+      }
     .list_user_component{
         .tab_user_list{
             .tab_component{
