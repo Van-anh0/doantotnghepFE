@@ -29,7 +29,6 @@
         width: 120vh;
         height: 170vh;
         display: flex;
-        gap: 30px;
         h2 {
           font-size: 22px;
           margin: 0;
@@ -41,13 +40,13 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
-          background-color: black;
+          background-color: #f0d4bc;
           padding: 20px;
           &.blue {
             background-color: #1d267d;
           }
           &.red {
-            background-color: #d25380;
+            background-color: #F2BED1;
           }
           &.purple {
             background-color: #5c469c;
@@ -55,9 +54,7 @@
           &.yellow {
             background-color: #FFD3B0;
           }
-          h2 {
-            color: white;
-          }
+       
 
           .form_uploadimg {
             margin-left:10px ;
@@ -67,7 +64,7 @@
             align-items: center;
             cursor: pointer;
             border-radius: 50%;
-            height: 200px;
+            height: 250px;
             width: 250px;
             position: relative;
             overflow: hidden;
@@ -84,7 +81,7 @@
               width: 95%;
               height: 50px;
               color: black;
-              background-color: #fff2cc;
+              background-color: #f0d4bc;
               border: none;
               font-size: 16px;
               cursor: pointer;
@@ -106,14 +103,28 @@
               pointer-events: none;
             }
           }
+
+          h2{
+            border:2px solid #805c34;
+            color: #805c34;
+            padding-left: 20px;
+            &.red {
+              border:2px solid black;
+              color: black;
+            }
+          }
           .fullName {
             min-height: 30px;
             font-size: 24px;
             font-weight: bold;
             width: 270px;
-            color: white;
+            padding-left: 20px;
+            color: #805c34;
             text-transform: uppercase;
             font-family: 'Fira Sans Condensed', 'Playfair Display', sans-serif, 'Times New Roman', Times, serif;
+            &.red {
+              color: black;
+            }
           }
   
           .fullName:hover {
@@ -132,7 +143,11 @@
             min-height: 30px;
             width: 270px;
             font-size: 18px;
-            color: white;
+            padding-left: 20px;
+            color: #805c34;
+            &.red {
+              color: black;
+            }
           }
   
           .target:hover {
@@ -143,10 +158,14 @@
   
           
           .skills {
+            padding-left: 20px;
             min-height: 30px;
             width: 250px;
-            color: white;
+            color: #805c34;
             font-size: 18px;
+            &.red {
+             color: black;
+            }
           }
   
           .skills:hover {
@@ -165,22 +184,42 @@
         }
   
         .right {
+          padding: 0 20px;
           flex: 4;
           display: flex;
           flex-direction: column;
           padding-top: 20px;
           gap: 20px;
-          
+          background-color: #fffcec;
+          &.red {
+            background-color: #F8E8EE;
+          }
+          h2{
+            background-color: #805c34;
+
+            padding: 5px 20px;
+            color: rgb(233, 233, 233);
+            &.yellow {
+              background-color: #FFD3B0;
+              color: #805c34;
+            }
+            &.red {
+              background-color: #FDCEDF;
+              color: #805c34;
+            }
+          }
   
           .infoBasic {
             margin-left: -5px;
+            padding-left: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
             min-height: 50px;
             outline: none;
-            width: 270px;
-            // border: 1px solid salmon;
+            width: 500px;
+
+            //border: 1px solid salmon;
            
             .info {
               display: flex;
@@ -190,7 +229,7 @@
               cursor: text;
               font-family: 'Times New Roman', Times, serif;
               font-size: 18px;
-              color: black;
+              color: #805c34;
   
               .icon {
                 display: flex;
@@ -198,7 +237,7 @@
                 align-items: center;
                 height: 25px;
                 width: 25px;
-                background-color: black;
+                background-color: #805c34;
                 color: white;
                 border-radius: 5px;
                 padding: 3px;
@@ -223,9 +262,16 @@
           
 
           .education {
+           
             min-height: 30px;
             width: 500px;
             font-size: 18px;
+            color: #805c34;
+            padding-left: 20px;
+          }
+
+          .education:hover {
+            border: 1px solid orange;
           }
   
           .certificate {

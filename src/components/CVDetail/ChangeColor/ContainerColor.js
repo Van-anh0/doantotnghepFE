@@ -1,6 +1,6 @@
 import React from 'react';
 import './changeColor.scss';
-function ContainerColor({ handleClick }) {
+export function ContainerColorBasic({ handleClick }) {
   return (
     <div className='button-container'>
       Chọn màu tô điểm cho mẫu CV:
@@ -14,4 +14,15 @@ function ContainerColor({ handleClick }) {
   );
 }
 
-export default ContainerColor;
+export function ContainerColorBeautiful({ handleClick }) {
+  return (
+    <div className='button-container'>
+      Chọn màu tô điểm cho mẫu CV:
+      <button onClick={() => handleClick('red')} className='red'></button>
+      <button onClick={() => handleClick('yellow')} className='yellow'></button>
+      <button onClick={() => handleClick('')} className='brown'></button>
+      {/* Thêm các button màu khác nếu cần */}
+    </div>
+  );
+}
+
