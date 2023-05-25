@@ -1,0 +1,106 @@
+.company {
+    margin-top: 100px;
+    .company-header {
+        .title {
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
+    .text-center {
+        text-align: center!important;
+    }
+    .container{
+        padding-left: 150px;
+        margin-top: 20px;
+    }
+    .row {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: calc(var(--bs-gutter-x)*-.5);
+        margin-right: calc(var(--bs-gutter-x)*-.5);
+        margin-top: calc(var(--bs-gutter-y)*-1);
+        
+    }
+    
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 33.33333333%;
+    }
+    .col-sm-6 {
+        flex: 0 0 auto;
+        width: 32%;
+    }
+    .company .row>* {
+        flex-shrink: 0;
+        margin-top: var(--bs-gutter-y);
+        max-width: 100%;
+        padding-left: calc(var(--bs-gutter-x)*.5);
+        padding-right: calc(var(--bs-gutter-x)*.5);
+        width: 100%;
+    }
+    .box-company {
+        background: #fff 0 0 no-repeat padding-box;
+        border-radius: 5px;
+        box-shadow: -1px 1px 4px rgba(0,0,0,.051);
+        height: 400px;
+        margin-bottom: 24px;
+        margin-right: 24px;
+        overflow: hidden;
+        width: 400px;
+        .company-info {
+            padding: 0 16px;
+            .company-name {
+                color: #333;
+                font: normal normal 700 14px/20px Roboto;
+                text-align: left;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+            .company-description {
+                color: #555;
+                font-size: 14px;
+                letter-spacing: 0;
+                padding-top: 16px;
+            }
+        }
+    }
+    .company-banner {
+        height: 180px;
+        margin-bottom: 16px;
+        overflow: hidden;
+        position: relative;
+        .cover-wraper {
+            height: 150px;
+            img {
+                height: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+        .company-logo {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            bottom: 0;
+            height: 64px;
+            left: 16px;
+            position: absolute;
+            width: 64px;
+        }
+    }
+    .img-fluid{
+        height: auto;
+        max-width: 100%;
+    }
+
+}
+
+.company ::before{
+    box-sizing: border-box;
+}

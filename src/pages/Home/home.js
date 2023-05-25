@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/footer'
 import ModalView from '../../components/ListCV/Modal/modalView'
 import BoxText from "../../components/BoxText/boxText"
 import Ins from "../../components/InstructContainer/insContainer"
+import ComBox from "../../components/Company/companyBox"
 function Home() {
   return (
     <div>
@@ -12,6 +13,7 @@ function Home() {
         <ListCV/>
         <BoxText/>
         <Ins/>
+        <ComBox/>
         <Footer/>
     </div>
   )
