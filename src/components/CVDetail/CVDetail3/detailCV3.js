@@ -9,7 +9,7 @@ import jsPDF from 'jspdf';
 import Uploader from '../items/Uploader';
 import vi from '../../../data/vi.json';
 import { AuthContext } from '../../../App';
-import ContainerColor from '../ChangeColor/ContainerColor';
+import { ContainerColorBasic } from '../ChangeColor/ContainerColor';
 
 function DetailCV3() {
   const { infoUser, isAuthenticated, imgCV } = useContext(AuthContext);
@@ -30,7 +30,7 @@ function DetailCV3() {
     address: '',
     email: '',
     avatarCV: '',
-    statusCV:'',
+    statusCV: '',
   });
   const [currentColor, setCurrentColor] = useState('');
 
@@ -70,7 +70,7 @@ function DetailCV3() {
         const imgData = canvas.toDataURL('image/jpeg');
         const base64String = imgData.replace('data:', '').replace(/^.+,/, '');
         infoCV.statusCV = base64String;
-      })
+      });
 
       actionCVApi
         .createCV(infoCV)
@@ -110,197 +110,193 @@ function DetailCV3() {
   //   }, [infoCV])
   return (
     <>
-    <ContainerColor handleClick={handleClickChangeColor}/>
-    <div className='Detail_CV3'>
-      <div className='Detail_CustomCV3'>
-        <div ref={componentRef} className='Detail_CustomCV_Update'>
-          
-        <div className={`left ${currentColor}`}>
-            <Uploader />
-            <div>
-              <h2>Kỹ Năng</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='skills'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.skills']}
-              ></div>
-            </div>
-            <div>
-              <h2>Ngoại Ngữ</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='language'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.language']}
-              ></div>
-            </div>
-            <div>
-              <h2>Học Vấn</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='education'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.education']}
-              ></div>
-            </div>
+      <ContainerColorBasic handleClick={handleClickChangeColor} />
+      <div className='Detail_CV3'>
+        <div className='Detail_CustomCV3'>
+          <div ref={componentRef} className='Detail_CustomCV_Update'>
+            <div className={`left ${currentColor}`}>
+              <Uploader />
+              <div>
+                <h2>Kỹ Năng</h2>
+                <div
+                  suppressContentEditableWarning={true}
+                  contentEditable
+                  className='skills'
+                  onSelect={handleSelect}
+                  onInput={handleChange}
+                  data-placeholder={vi['cv.skills']}
+                ></div>
+              </div>
+              <div>
+                <h2>Ngoại Ngữ</h2>
+                <div
+                  suppressContentEditableWarning={true}
+                  contentEditable
+                  className='language'
+                  onSelect={handleSelect}
+                  onInput={handleChange}
+                  data-placeholder={vi['cv.language']}
+                ></div>
+              </div>
+              <div>
+                <h2>Học Vấn</h2>
+                <div
+                  suppressContentEditableWarning={true}
+                  contentEditable
+                  className='education'
+                  onSelect={handleSelect}
+                  onInput={handleChange}
+                  data-placeholder={vi['cv.education']}
+                ></div>
+              </div>
 
-            <div>
-              <h2>Chứng Chỉ</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='certificate'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.certificate']}
-              ></div>
+              <div>
+                <h2>Chứng Chỉ</h2>
+                <div
+                  suppressContentEditableWarning={true}
+                  contentEditable
+                  className='certificate'
+                  onSelect={handleSelect}
+                  onInput={handleChange}
+                  data-placeholder={vi['cv.certificate']}
+                ></div>
+              </div>
+              <div>
+                <h2>Sở Thích</h2>
+                <div
+                  suppressContentEditableWarning={true}
+                  contentEditable
+                  className='interests'
+                  onSelect={handleSelect}
+                  onInput={handleChange}
+                  data-placeholder={vi['cv.interests']}
+                ></div>
+              </div>
             </div>
-            <div>
-              <h2>Sở Thích</h2>
+            <div className='right'>
               <div
                 suppressContentEditableWarning={true}
                 contentEditable
-                className='interests'
+                className='fullName'
                 onSelect={handleSelect}
                 onInput={handleChange}
-                data-placeholder={vi['cv.interests']}
+                data-placeholder={vi['cv.fullname']}
               ></div>
+              <div
+                suppressContentEditableWarning={true}
+                contentEditable
+                className='applyFor'
+                onSelect={handleSelect}
+                onInput={handleChange}
+                data-placeholder={vi['cv.applyFor']}
+              ></div>
+
+              <div className='infoBasic'>
+                <div className='info'>
+                  <div className={`icon ${currentColor}`}>
+                    <BsGenderAmbiguous />
+                  </div>
+                  <div>
+                    {vi['cv.gender']}
+                    <span
+                      suppressContentEditableWarning={true}
+                      className='gender'
+                      contentEditable
+                      onSelect={handleSelect}
+                      onInput={handleChange}
+                    ></span>
+                  </div>
+                </div>
+                <div className='info'>
+                  <div className={`icon ${currentColor}`}>
+                    <BsTelephone />
+                  </div>
+                  <div>
+                    {vi['cv.phone']}
+                    <span
+                      suppressContentEditableWarning={true}
+                      className='phone'
+                      contentEditable
+                      onSelect={handleSelect}
+                      onInput={handleChange}
+                    ></span>
+                  </div>
+                </div>
+                <div className='info'>
+                  <div className={`icon ${currentColor}`}>
+                    <FaBirthdayCake />
+                  </div>
+                  <div>
+                    {vi['cv.birthday']}
+                    <span
+                      suppressContentEditableWarning={true}
+                      className='birthday'
+                      contentEditable
+                      onSelect={handleSelect}
+                      onInput={handleChange}
+                    ></span>
+                  </div>
+                </div>
+                <div className='info'>
+                  <div className={`icon ${currentColor}`}>
+                    <HiOutlineLocationMarker />
+                  </div>
+                  <div>
+                    {vi['cv.address']}
+                    <span
+                      suppressContentEditableWarning={true}
+                      className='address'
+                      contentEditable
+                      onSelect={handleSelect}
+                      onInput={handleChange}
+                    ></span>
+                  </div>
+                </div>
+                <div className='info mail'>
+                  <div className={`icon ${currentColor}`}>
+                    <HiOutlineMail />
+                  </div>
+                  <div>
+                    {vi['cv.email']}
+                    <span
+                      suppressContentEditableWarning={true}
+                      className='email'
+                      contentEditable
+                      onSelect={handleSelect}
+                      onInput={handleChange}
+                    ></span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Mục tiêu</h2>
+                <div
+                  suppressContentEditableWarning={true}
+                  contentEditable
+                  className='target'
+                  onSelect={handleSelect}
+                  onInput={handleChange}
+                  data-placeholder={vi['cv.target']}
+                ></div>
+              </div>
+
+              <div>
+                <h2>Kinh Nghiệm Làm Việc</h2>
+                <div
+                  suppressContentEditableWarning={true}
+                  contentEditable
+                  className='experience'
+                  onSelect={handleSelect}
+                  onInput={handleChange}
+                  data-placeholder={vi['cv.experience']}
+                ></div>
+              </div>
             </div>
           </div>
-          <div className='right'>
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='fullName'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi['cv.fullname']}
-            ></div>
-            <div
-              suppressContentEditableWarning={true}
-              contentEditable
-              className='applyFor'
-              onSelect={handleSelect}
-              onInput={handleChange}
-              data-placeholder={vi['cv.applyFor']}
-            ></div>
-
-            <div className='infoBasic'>
-              <div className='info'>
-                <div className={`icon ${currentColor}`}>
-                  <BsGenderAmbiguous />
-                </div>
-                <div>
-                  {vi['cv.gender']}
-                  <span
-                    suppressContentEditableWarning={true}
-                    className='gender'
-                    contentEditable
-                    onSelect={handleSelect}
-                    onInput={handleChange}
-                  ></span>
-                </div>
-              </div>
-              <div className='info'>
-                <div className={`icon ${currentColor}`}>
-                  <BsTelephone />
-                </div>
-                <div>
-                  {vi['cv.phone']}
-                  <span
-                    suppressContentEditableWarning={true}
-                    className='phone'
-                    contentEditable
-                    onSelect={handleSelect}
-                    onInput={handleChange}
-                  ></span>
-                </div>
-              </div>
-              <div className='info'>
-                <div className={`icon ${currentColor}`}>
-                  <FaBirthdayCake />
-                </div>
-                <div>
-                  {vi['cv.birthday']}
-                  <span
-                    suppressContentEditableWarning={true}
-                    className='birthday'
-                    contentEditable
-                    onSelect={handleSelect}
-                    onInput={handleChange}
-                  ></span>
-                </div>
-              </div>
-              <div className='info'>
-                <div className={`icon ${currentColor}`}>
-                  <HiOutlineLocationMarker />
-                </div>
-                <div>
-                  {vi['cv.address']}
-                  <span
-                    suppressContentEditableWarning={true}
-                    className='address'
-                    contentEditable
-                    onSelect={handleSelect}
-                    onInput={handleChange}
-                  ></span>
-                </div>
-              </div>
-              <div className='info mail'>
-                <div className={`icon ${currentColor}`}>
-                  <HiOutlineMail />
-                </div>
-                <div>
-                  {vi['cv.email']}
-                  <span
-                    suppressContentEditableWarning={true}
-                    className='email'
-                    contentEditable
-                    onSelect={handleSelect}
-                    onInput={handleChange}
-                  ></span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Mục tiêu</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='target'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.target']}
-              ></div>
-            </div>
-
-            <div>
-              <h2>Kinh Nghiệm Làm Việc</h2>
-              <div
-                suppressContentEditableWarning={true}
-                contentEditable
-                className='experience'
-                onSelect={handleSelect}
-                onInput={handleChange}
-                data-placeholder={vi['cv.experience']}
-              ></div>
-            </div>
-
-           
-          </div>
-         
         </div>
+        <button onClick={submit}>Lưu vào lịch sử</button>
+        <button onClick={handlePrint}> In ra</button>
       </div>
-      <button onClick={submit}>Lưu vào lịch sử</button>
-      <button onClick={handlePrint}> In ra</button>
-    </div>
     </>
   );
 }
