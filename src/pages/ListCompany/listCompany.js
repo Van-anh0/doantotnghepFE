@@ -2,16 +2,17 @@ import React from 'react';
 import Header from '../../components/Header/header';
 import Footer from '../../components/Footer/footer';
 import DocPage from '../../components/DocPage/docPage';
-import Doc6 from '../../components/DocPage/doc6';
-function ContentDoc6() {
+import ListCompany from '../../components/LstCompany/lstComany';
+import Ins from "../../components/InstructContainer/insContainer"
+function CompanyPage() {
   return (
     <div>
       <Header />
-      <DocPage />
-      <Doc6 />
+      <ListCompany/>
+      <Ins/>
       <Footer />
     </div>
   );
 }
 
-export default ContentDoc6;
+export default CompanyPage;

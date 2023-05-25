@@ -1,28 +1,29 @@
-.hidden-xs {
+.hidden-cb {
   z-index: 99999999;
   position: fixed;
   width: 70px;
   height: 70px;
-  bottom: 40px;
+  bottom: 150px;
   left: 50px;
   cursor: pointer;
 
-  .bell-message {
+  .bell-message-cb {
     z-index: 99999999;
     width: 100%;
     height: 100%;
     position: relative;
     border-radius: 50%;
-    background: rgb(255, 255, 255);
+    background: #fcfcfc;
     text-align: center;
     border: 3px solid #37306b;
-    .img {
+    .img-cb {
       position: relative;
       color: white;
-      top: 3px;
-      width: 70px;
+      top: 6px;
+      width: 55px;
+      text-align: center;
     }
-    .tool-tip {
+    .tool-tip-cb {
       min-width: 250px;
       max-width: 300px;
       min-height: 200px;
@@ -57,6 +58,6 @@
     }
   }
 }
-.hidden-xs > .bell-message:hover .tool-tip {
+.hidden-cb > .bell-message-cb:hover .tool-tip-cb {
   display: block;
 }
