@@ -2,7 +2,7 @@ import React from 'react';
 import './companyBox.scss';
 import icon from './image1.png';
 import { Link } from 'react-router-dom';
-import IMG from '../DocPage/image/image5.jpg';
+import IMG from './com.png';
 function CompanyBox() {
   return (
     <div>
