@@ -10,9 +10,15 @@ import Uploader from '../items/Uploader';
 import vi from '../../../data/vi.json';
 import { AuthContext } from '../../../App';
 import { ContainerColorBasic } from '../ChangeColor/ContainerColor';
-
+import { ModalNoticeNotLogin, ModalNoticeSuccess } from '../items/ModalNotification/ModalNofication';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { useCVByID } from '../../../hook/data/getData';
+import { ToastContainer, toast } from 'react-toastify';
 function DetailCV4() {
-  const { infoUser, isAuthenticated, imgCV } = useContext(AuthContext);
+  const [notLoginOpen, setNotLoginOpen] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const { infoUser, isAuthenticated, imgPublic } = useContext(AuthContext);
   const componentRef = useRef(null);
   const [infoCV, setInfoCV] = useState({
     skills: '',
@@ -31,8 +37,18 @@ function DetailCV4() {
     email: '',
     avatarCV: '',
     statusCV: '',
+    formCV: 'CV4',
+    colorCV: '',
   });
+
   const [currentColor, setCurrentColor] = useState('');
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const idCV = searchParams.get('id');
+  console.log('id', idCV);
+  const dataCV = useCVByID(idCV);
+  console.log('dataCV', dataCV);
 
   const handleClickChangeColor = (color) => {
     setCurrentColor(color);
@@ -44,45 +60,81 @@ function DetailCV4() {
   };
 
   const handleChange = (e) => {
-    const name = e.target.className;
+    const name = e.target.id;
     const value = e.target.innerText;
     setInfoCV((prevState) => ({ ...prevState, [name]: value }));
   };
-
-  //   const handleContentEditableChange = (e) => {
-  //     const { className, innerText } = e.target;
-  //     setInfoCV((prevState) => ({
-  //       ...prevState,
-  //       [className]: innerText,
-  //     }));
-  //   };
 
   const submit = async (e) => {
     e.preventDefault();
 
     if (isAuthenticated === true) {
-      infoCV.authorMail = infoUser.email;
-      if (imgCV) {
-        infoCV.avatarCV = imgCV;
+      if (idCV) {
+        try {
+          if (imgPublic) {
+            infoCV.avatarCV = imgPublic;
+          }
+          infoCV.colorCV = currentColor;
+          infoCV.statusCV = '';
+          try {
+            const canvas = await html2canvas(componentRef.current, { scale: 4 });
+            const imgData = canvas.toDataURL('image/jpeg');
+            const formData = new FormData();
+            formData.append('file', imgData);
+            formData.append('upload_preset', 'alw4lzrn'); // Thay YOUR_UPLOAD_PRESET bằng upload preset của bạn từ Cloudinary
+
+            const response = await axios.post('https://api.cloudinary.com/v1_1/dmrgrnxqy/image/upload', formData);
+
+            const imageUrl = response.data.secure_url;
+            // Lưu imageUrl vào cơ sở dữ liệu hoặc sử dụng theo ý muốn của bạn
+            //console.log('URL ảnh:', imageUrl);
+            infoCV.statusCV = imageUrl;
+          } catch (error) {
+            console.error('Lỗi tải lên ảnh statusCV:', error);
+          }
+          const updatedCV = await actionCVApi.updateCVByID(idCV, infoCV);
+          if (updatedCV) {
+            toast.success('Cập nhật thông tin CV thành công!', { position: toast.POSITION.TOP_CENTER });
+          }
+        } catch (err) {
+          alert(`Update CV không thành công!`);
+        }
+      } else {
+        infoCV.authorMail = infoUser.email;
+        if (imgPublic) {
+          infoCV.avatarCV = imgPublic;
+        }
+        infoCV.colorCV = currentColor;
+        infoCV.statusCV = '';
+        try {
+          const canvas = await html2canvas(componentRef.current, { scale: 4 });
+          const imgData = canvas.toDataURL('image/jpeg');
+          const formData = new FormData();
+          formData.append('file', imgData);
+          formData.append('upload_preset', 'alw4lzrn'); // Thay YOUR_UPLOAD_PRESET bằng upload preset của bạn từ Cloudinary
+
+          const response = await axios.post('https://api.cloudinary.com/v1_1/dmrgrnxqy/image/upload', formData);
+
+          const imageUrl = response.data.secure_url;
+          // Lưu imageUrl vào cơ sở dữ liệu hoặc sử dụng theo ý muốn của bạn
+          //console.log('URL ảnh:', imageUrl);
+          infoCV.statusCV = imageUrl;
+        } catch (error) {
+          console.error('Lỗi tải lên ảnh statusCV:', error);
+        }
+
+        actionCVApi
+          .createCV(infoCV)
+          .then(() => {
+            // alert('Lưu mẫu cv thành công, vào lịch sử để xem lại nhé!');
+            setSuccessOpen(true);
+          })
+          .catch((error) => {
+            alert(`Lưu mẫu cv không thành công!`);
+          });
       }
-
-      html2canvas(componentRef.current, { scale: 4 }).then((canvas) => {
-        const imgData = canvas.toDataURL('image/jpeg');
-        const base64String = imgData.replace('data:', '').replace(/^.+,/, '');
-        infoCV.statusCV = base64String;
-      });
-
-      actionCVApi
-        .createCV(infoCV)
-        .then(() => {
-          // alert('Lưu mẫu cv thành công, vào lịch sử để xem lại nhé!');
-          console.log('Lưu mẫu cv thành công, vào lịch sử để xem lại nhé!');
-        })
-        .catch((error) => {
-          alert(`Lưu mẫu cv không thành công! Gà`);
-        });
     } else {
-      console.log('chưa đăng nhập rùi');
+      setNotLoginOpen(true);
     }
   };
 
@@ -110,12 +162,14 @@ function DetailCV4() {
   //   }, [infoCV])
   return (
     <>
+      <ModalNoticeNotLogin open={notLoginOpen} onClose={() => setNotLoginOpen(false)} />
+      <ModalNoticeSuccess open={successOpen} onClose={() => setSuccessOpen(false)} />
       <ContainerColorBasic handleClick={handleClickChangeColor} />
       <div className='Detail_CV4'>
         <div className='Detail_CustomCV4'>
           <div ref={componentRef} className='Detail_CustomCV_Update'>
             <div className={`left ${currentColor}`}>
-              <Uploader />
+              <Uploader imgCV={dataCV?.avatarCV} />
               <div className='infoBasic'>
                 <div className='info'>
                   <div className={`icon ${currentColor}`}>
@@ -129,7 +183,10 @@ function DetailCV4() {
                       contentEditable
                       onSelect={handleSelect}
                       onInput={handleChange}
-                    ></span>
+                      id='gender'
+                    >
+                      {dataCV?.gender}
+                    </span>
                   </div>
                 </div>
                 <div className='info'>
@@ -144,7 +201,10 @@ function DetailCV4() {
                       contentEditable
                       onSelect={handleSelect}
                       onInput={handleChange}
-                    ></span>
+                      id='phone'
+                    >
+                      {dataCV?.phone}
+                    </span>
                   </div>
                 </div>
                 <div className='info'>
@@ -159,7 +219,10 @@ function DetailCV4() {
                       contentEditable
                       onSelect={handleSelect}
                       onInput={handleChange}
-                    ></span>
+                      id='birthday'
+                    >
+                      {dataCV?.birthday}
+                    </span>
                   </div>
                 </div>
                 <div className='info'>
@@ -174,7 +237,9 @@ function DetailCV4() {
                       contentEditable
                       onSelect={handleSelect}
                       onInput={handleChange}
-                    ></span>
+                    >
+                      {dataCV?.address}
+                    </span>
                   </div>
                 </div>
                 <div className='info'>
@@ -189,7 +254,9 @@ function DetailCV4() {
                       contentEditable
                       onSelect={handleSelect}
                       onInput={handleChange}
-                    ></span>
+                    >
+                      {dataCV?.email}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -202,7 +269,10 @@ function DetailCV4() {
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.skills']}
-                ></div>
+                  id='skills'
+                >
+                  {dataCV?.skills}
+                </div>
               </div>
               <div>
                 <h2>Ngoại Ngữ</h2>
@@ -213,7 +283,10 @@ function DetailCV4() {
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.language']}
-                ></div>
+                  id='language'
+                >
+                  {dataCV?.language}
+                </div>
               </div>
 
               <div>
@@ -225,7 +298,10 @@ function DetailCV4() {
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.interests']}
-                ></div>
+                  id='interests'
+                >
+                  {dataCV?.interests}
+                </div>
               </div>
             </div>
             <div className='right'>
@@ -236,7 +312,10 @@ function DetailCV4() {
                 onSelect={handleSelect}
                 onInput={handleChange}
                 data-placeholder={vi['cv.fullname']}
-              ></div>
+                id='fullName'
+              >
+                {dataCV?.fullName}
+              </div>
               <div
                 suppressContentEditableWarning={true}
                 contentEditable
@@ -244,7 +323,10 @@ function DetailCV4() {
                 onSelect={handleSelect}
                 onInput={handleChange}
                 data-placeholder={vi['cv.applyFor']}
-              ></div>
+                id='applyFor'
+              >
+                {dataCV?.applyFor}
+              </div>
 
               <div>
                 <h2>Mục tiêu</h2>
@@ -255,7 +337,10 @@ function DetailCV4() {
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.target']}
-                ></div>
+                  id='target'
+                >
+                  {dataCV?.target}
+                </div>
               </div>
 
               <div>
@@ -267,7 +352,10 @@ function DetailCV4() {
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.education']}
-                ></div>
+                  id='education'
+                >
+                  {dataCV?.education}
+                </div>
               </div>
 
               <div>
@@ -279,7 +367,10 @@ function DetailCV4() {
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.certificate']}
-                ></div>
+                  id='certificate'
+                >
+                  {dataCV?.certificate}
+                </div>
               </div>
 
               <div>
@@ -291,13 +382,18 @@ function DetailCV4() {
                   onSelect={handleSelect}
                   onInput={handleChange}
                   data-placeholder={vi['cv.experience']}
-                ></div>
+                  id='experience'
+                >
+                  {dataCV?.experience}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <button onClick={submit}>Lưu vào lịch sử</button>
-        <button onClick={handlePrint}> In ra</button>
+        <div className='list_button_custom'>
+          <button onClick={submit}>Lưu vào lịch sử</button>
+          <button onClick={handlePrint}> In ra</button>
+        </div>
       </div>
     </>
   );
