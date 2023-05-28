@@ -6,7 +6,6 @@ import HistoryCV from '../../components/HistoryCV/HistoryCV'
 function HistoryCVPage() {
   return (
     <div>
-        <Header/>
         <HistoryCV/>
         <Footer/>
     </div>

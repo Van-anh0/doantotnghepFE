@@ -5,7 +5,7 @@ import DocPage from '../../components/DocPage/docPage';
 function Instruct() {
   return (
     <div>
-      <Header />
+    
       <DocPage />
       <Footer />
     </div>

@@ -9,7 +9,7 @@ import ComBox from "../../components/Company/companyBox"
 function Home() {
   return (
     <div>
-        <Header/>
+       
         <ListCV/>
         <BoxText/>
         <Ins/>

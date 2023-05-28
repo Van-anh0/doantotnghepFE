@@ -139,7 +139,7 @@ function ModalLogin() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<div className='login'>Đăng nhập / Đăng ký</div>}
+      trigger={<div className='login'>{window.lang['header.login']}</div>}
     >
       <Tabs selectedIndex={activeTab} onSelect={handleTabClick}>
         <TabList>

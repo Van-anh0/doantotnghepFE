@@ -6,7 +6,7 @@ import Doc8 from '../../components/DocPage/doc8';
 function ContentDoc8() {
   return (
     <div>
-      <Header />
+     
       <DocPage />
       <Doc8 />
       <Footer />

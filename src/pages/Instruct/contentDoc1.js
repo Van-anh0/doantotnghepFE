@@ -6,7 +6,7 @@ import Doc1 from '../../components/DocPage/doc1';
 function ContentDoc1() {
   return (
     <div>
-      <Header />
+  
       <DocPage />
       <Doc1 />
       <Footer />

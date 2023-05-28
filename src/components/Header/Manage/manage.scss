@@ -1,60 +1,151 @@
-.QLuser{
-    margin-top: 150px;
-    margin-left: 50px;
-    .form_uploadimg {
+.QLuser {
+  margin-top: 100px;
+  h2 {
+    text-align: center;
+    font-size: 30px;
+  }
+  h3 {
+    margin-top: -0.8rem;
+    text-align: center;
+    font-size: 24px;
+  }
+  .list_user_component {
+    display: flex;
+
+    .tab_user_list {
+      flex: 1;
+      ul {
+        list-style: none;
+        margin: 1rem 2rem;
+        padding: 0;
+      }
+
+      li {
+        height: 50px;
+        background-color: #37306b;
+        color: white;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        margin: 5px 0;
+        user-select: none;
         cursor: pointer;
-        border-radius: 5px;
-        height: 300px;
-        width: 200px;
-        position: relative;
-        img {
-          height: 80%;
-          width: 100%;
-        }
-        &.yes {
-          border: none;
-        }
-
-        .btn {
-          position: absolute;
-          width: 95%;
-          height: 50px;
-          color: black;
-          background-color: #fff2cc;
-          border: none;
-          font-size: 20px;
-          cursor: pointer;
-          text-align: center;
-          padding: 5px;
-          opacity: 0;
+        &.active {
+          color: yellow;
         }
       }
-
-      .form_uploadimg:hover {
-        img {
-          filter: grayscale(100%);
-        }
-
-        .btn {
-          opacity: 0.9;
-          transition: all 0.5s ease;
-          z-index: 1;
-          pointer-events: none;
-        }
-      }
-    .list_user_component{
-        .tab_user_list{
-            .tab_component{
-                display: flex;
-                flex-direction: column;
-                width: 200px;
-                
-                }
-            }
-            
-        }
     }
+
+    .tab_component {
+      margin-top: 1rem;
+      margin-right: 2rem;
+      margin-bottom: 2rem;
+      flex: 4;
+      border: 2px dashed #37306b;
+      > div {
+        display: none;
+        padding: 20px;
+        padding-left: 20%;
+
+        &.active {
+          display: block;
+        }
+
+        h2 {
+          font-size: 30px;
+          text-align: left;
+          margin-left: 50px;
+        }
+        h4 {
+          font-size: 22px;
+        }
+
+        .form_uploadimg {
+          margin-left: 25%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          border-radius: 50%;
+          height: 200px;
+          width: 200px;
+          position: relative;
+          border-radius: 50%;
+          overflow: hidden;
+          img {
+            height: 100%;
+            width: 100%;
+          }
+          &.yes {
+            border: none;
+          }
+
+          .btn {
+            position: absolute;
+            width: 95%;
+            height: 50px;
+            color: black;
+            background-color: #fff2cc;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            text-align: center;
+            padding: 5px;
+            opacity: 0;
+          }
+        }
+
+        .form_uploadimg:hover {
+          img {
+            filter: grayscale(100%);
+          }
+
+          .btn {
+            opacity: 0.9;
+            transition: all 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+          }
+        }
+
+        form {
+          margin: 20px 0;
+          .text_input {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            .text_input_item {
+              margin-top: 2px;
+              border: 1px solid #38346c;
+              width: 70%;
+              padding: 4px;
+              border-radius: 5px;
+              .icon {
+                padding: 0 5px;
+                color: #38346c;
+              }
+              input {
+                width: 100%;
+                height: 100%;
+                outline: none;
+                border: none;
+                font-size: 16px;
+                background-color: transparent;
+              }
+            }
+          }
+          button {
+            width: 70%;
+            height: 50px;
+            background-color: #38346c;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

@@ -20,14 +20,15 @@ function ListCV() {
 
   return (
     <div className='listCV'>
-      <h2>Danh sách mẫu CV xin việc</h2>
+      <h2>{window.lang['home.listCV.ds']}</h2>
+      
       <div className='filter'>
-        <h2>Bộ lọc: </h2>
+        <h2>{window.lang['home.listCV.fi']}</h2>
         <select value={selectedValue} onChange={handleChange}>
-          <option value=''>Tất cả thiết kế</option>
-          <option value='Cổ điển'>Cổ điển</option>
-          <option value='Thanh lịch'>Thanh lịch</option>
-          <option value='Hiện đại'>Hiện đại</option>
+          <option value=''>{window.lang['home.listCV.fi.all']}</option>
+          <option value='Cổ điển'>{window.lang['home.listCV.fi.classic']}</option>
+          <option value='Thanh lịch'>{window.lang['home.listCV.fi.elegant']}</option>
+          <option value='Hiện đại'>{window.lang['home.listCV.fi.modern']}</option>
         </select>
       </div>
       <div className='components'>

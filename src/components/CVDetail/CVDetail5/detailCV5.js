@@ -1,4 +1,4 @@
-import React, {useRef, useState, useContext } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import './detailCV5.scss';
 import { BsGenderAmbiguous, BsTelephone } from 'react-icons/bs';
 import { FaBirthdayCake } from 'react-icons/fa';
@@ -12,7 +12,8 @@ import { AuthContext } from '../../../App';
 import { ContainerColorBeautiful } from '../ChangeColor/ContainerColor';
 import { ModalNoticeNotLogin, ModalNoticeSuccess } from '../items/ModalNotification/ModalNofication';
 import axios from 'axios';
-
+import { useLocation } from 'react-router-dom';
+import { useCVByID } from '../../../hook/data/getData';
 function DetailCV5() {
   const [notLoginOpen, setNotLoginOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -35,8 +36,18 @@ function DetailCV5() {
     email: '',
     avatarCV: '',
     statusCV: '',
+    formCV: '',
+    colorCV: '',
   });
+
   const [currentColor, setCurrentColor] = useState('');
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const idCV = searchParams.get('id');
+  console.log('id', idCV);
+  const dataCV = useCVByID(idCV);
+  console.log('dataCV', dataCV);
 
   const handleClickChangeColor = (color) => {
     setCurrentColor(color);
@@ -76,9 +87,9 @@ function DetailCV5() {
         const formData = new FormData();
         formData.append('file', imgData);
         formData.append('upload_preset', 'alw4lzrn'); // Thay YOUR_UPLOAD_PRESET bằng upload preset của bạn từ Cloudinary
-    
+
         const response = await axios.post('https://api.cloudinary.com/v1_1/dmrgrnxqy/image/upload', formData);
-    
+
         const imageUrl = response.data.secure_url;
         // Lưu imageUrl vào cơ sở dữ liệu hoặc sử dụng theo ý muốn của bạn
         //console.log('URL ảnh:', imageUrl);
@@ -121,7 +132,7 @@ function DetailCV5() {
       const pdfData = pdf.output('blob');
 
       const fileURL = URL.createObjectURL(pdfData);
-  
+
       // Mở tab mới và hiển thị PDF
       window.open(fileURL, '_blank');
     });
@@ -147,7 +158,9 @@ function DetailCV5() {
                 onInput={handleChange}
                 data-placeholder={vi['cv.fullname']}
                 id='fullName'
-              ></div>
+              >
+                {dataCV?.fullName}
+              </div>
               <div
                 suppressContentEditableWarning={true}
                 contentEditable
@@ -156,7 +169,9 @@ function DetailCV5() {
                 onInput={handleChange}
                 data-placeholder={vi['cv.applyFor']}
                 id='applyFor'
-              ></div>
+              >
+                {dataCV?.applyFor}
+              </div>
 
               <div>
                 <h2 className={`${currentColor}`}>Mục tiêu</h2>
@@ -168,7 +183,9 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.target']}
                   id='target'
-                ></div>
+                >
+                  {dataCV?.target}
+                </div>
               </div>
 
               <div>
@@ -181,7 +198,9 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.skills']}
                   id='skills'
-                ></div>
+                >
+                  {dataCV?.skills}
+                </div>
               </div>
               <div>
                 <h2 className={`${currentColor}`}>Ngoại Ngữ</h2>
@@ -193,7 +212,9 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.language']}
                   id='language'
-                ></div>
+                >
+                  {dataCV?.language}
+                </div>
               </div>
 
               <div>
@@ -206,7 +227,9 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.interests']}
                   id='interests'
-                ></div>
+                >
+                   {dataCV?.interests}
+                </div>
               </div>
             </div>
             <div className={`right ${currentColor}`}>
@@ -224,7 +247,7 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='gender'
-                    ></span>
+                    >{dataCV?.gender}</span>
                   </div>
                 </div>
                 <div className='info'>
@@ -240,7 +263,7 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='phone'
-                    ></span>
+                    >{dataCV?.phone}</span>
                   </div>
                 </div>
                 <div className='info'>
@@ -256,7 +279,7 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='birthday'
-                    ></span>
+                    >{dataCV?.birthday}</span>
                   </div>
                 </div>
                 <div className='info'>
@@ -272,7 +295,7 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='address'
-                    ></span>
+                    >{dataCV?.address}</span>
                   </div>
                 </div>
                 <div className='info'>
@@ -288,7 +311,7 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='email'
-                    ></span>
+                    >{dataCV?.email}</span>
                   </div>
                 </div>
               </div>
@@ -303,7 +326,7 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.education']}
                   id='education'
-                ></div>
+                >{dataCV?.education}</div>
               </div>
 
               <div>
@@ -316,7 +339,7 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.certificate']}
                   id='certificate'
-                ></div>
+                >{dataCV?.certificate}</div>
               </div>
 
               <div>
@@ -329,7 +352,7 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.experience']}
                   id='experience'
-                ></div>
+                >{dataCV?.experience}</div>
               </div>
             </div>
           </div>
