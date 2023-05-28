@@ -1,15 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 import logo from '../../Asset/logo-cv-xinh.png';
 import './header.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Outlet } from 'react-router-dom';
 import ModalLogin from './Modal/modalLogin';
 import { AuthContext } from '../../App';
 import { AiOutlineDown, AiFillCaretUp } from 'react-icons/ai';
 import { BsChevronUp } from 'react-icons/bs';
 import actionUserAPI from '../../actions/actionUser';
 import { scrollToTop } from '../../utils/scrollTop';
-
-function Header() {
+import { Icon } from 'semantic-ui-react';
+import {FaFlag} from 'react-icons/fa'
+function Header({ lang, onChangeLanguage }) {
   const { isAuthenticated } = useContext(AuthContext);
   // useEffect(() => {
   //   console.log('datauser', infoUser);
@@ -17,6 +18,7 @@ function Header() {
   const scrollTop = () => scrollToTop('smooth');
   useEffect(() => {
     scrollToTop('instant');
+    console.log('lang', lang);
   }, []);
   return (
     <>
@@ -27,11 +29,19 @@ function Header() {
             CV Online
           </div>
         </Link>
-        {isAuthenticated ? <LoginComponent /> : <ModalLogin />}
+        <div className='header-end'>
+          <div className='icon' onClick={onChangeLanguage}>
+            <FaFlag/>
+            {lang.lang === 'vi' ? 'Việt' : 'English'}
+          </div>
+          {isAuthenticated ? <LoginComponent /> : <ModalLogin />}
+        </div>
       </div>
       <div className='onTopButton' onClick={scrollTop}>
         <BsChevronUp />
       </div>
+
+      <Outlet />
     </>
   );
 }
@@ -64,10 +74,14 @@ export function LoginComponent() {
   return (
     <div className='login' onClick={handleDropdownClick}>
       <div className='user'>
-        <img
-          src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlY1u2y6jA6w0qAvgLmi94Qeh3vv8gnZxoJg&usqp=CAU'
-          alt=''
-        />
+        {infoUser?.avatarUser ? (
+          <img src={infoUser?.avatarUser} alt='avatar user' />
+        ) : (
+          <img
+            src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlY1u2y6jA6w0qAvgLmi94Qeh3vv8gnZxoJg&usqp=CAU'
+            alt='avatar default'
+          />
+        )}
         <div className='nameUser'>{infoUser?.username}</div>
         <AiOutlineDown />
       </div>
@@ -79,7 +93,7 @@ export function LoginComponent() {
           <div className='dropdown-menu'>
             <ul>
               <Link to='/cv/user'>
-              <li>Xem thông tin</li>
+                <li>Xem thông tin</li>
               </Link>
               <Link to='/cv/manage'>
                 <li> Quản lý tài khoản</li>

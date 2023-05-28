@@ -7,7 +7,7 @@ import Ins from "../../components/InstructContainer/insContainer"
 function CompanyPage() {
   return (
     <div>
-      <Header />
+     
       <ListCompany/>
       <Ins/>
       <Footer />

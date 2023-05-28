@@ -24,6 +24,11 @@ const actionCVApi = {
     const request = await authorizedAxiosInstance.delete(`http://localhost:5000/api/cv/${id}`);
     return request.data;
   },
+
+  getCVByID: async (id) => {
+    const request = await authorizedAxiosInstance.get(`http://localhost:5000/api/CV/${id}`);
+    return request.data;
+  },
 };
 
 export default actionCVApi;

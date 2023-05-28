@@ -9,6 +9,7 @@ import { AuthContext } from '../../App';
 import { momentDayMonthYear } from '../../hook/moment/formatDay';
 import { ToastContainer, toast } from 'react-toastify';
 import jsPDF from 'jspdf';
+import { Link } from 'react-router-dom';
 
 function HistoryCV() {
   const { infoUser } = useContext(AuthContext);
@@ -68,9 +69,11 @@ function HistoryCV() {
                     </div>
                     <div className='dateTime'>Ngày cập nhật: {momentDayMonthYear(cv.updatedAt)}</div>
                     <div className='function'>
+                      <Link to ={`/cv/detail/CV5?id=${cv._id}`}>
                       <div className='btn'>
                         <ImPencil2 /> Sửa CV
                       </div>
+                      </Link>
                       <div className='btn bg' onClick={() => handlePrint(cv.statusCV)}>
                         <FiDownload /> Tải xuống
                       </div>

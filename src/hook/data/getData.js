@@ -22,6 +22,25 @@ export const useCVsByAuthor = (author, reload) => {
   return data;
 };
 
+export const useCVByID = (id) => {
+  const [data, setData] = useState([]);
+
+  const fetchCVsByAuthor = async () => {
+    try {
+      const response = await actionCVApi.getCVByID(id);
+      setData(response); // Cập nhật giá trị cho state data bằng response
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCVsByAuthor();
+  }, [id]); 
+
+  return data;
+};
+
 export const useCVFormsByType = (type) => {
   const [data, setData] = useState([]);
 

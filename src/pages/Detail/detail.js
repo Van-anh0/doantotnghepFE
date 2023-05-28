@@ -5,7 +5,7 @@ import DetailCV3 from '../../components/CVDetail/CVDetail3/detailCV3'
 import DetailCV4 from '../../components/CVDetail/CVDetail4/detailCV4'
 import DetailCV5 from '../../components/CVDetail/CVDetail5/detailCV5'
 import DetailCV6 from '../../components/CVDetail/CVDetail6/detailCV6'
-import Header from "../../components/Header/header"
+
 import Footer from "../../components/Footer/footer"
 import PanelClick from '../../components/PanelClick/PanelClick'
 import {useParams} from 'react-router-dom'
@@ -33,7 +33,7 @@ function Detail() {
   }
   return (
     <div>
-        <Header/>
+      
         <PanelClick/>
         {detailCVComponent}
         <Footer/>
