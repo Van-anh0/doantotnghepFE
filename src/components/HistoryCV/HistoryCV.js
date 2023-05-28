@@ -8,6 +8,8 @@ import { handleDeleteCVById } from '../../hook/data/deleteData';
 import { AuthContext } from '../../App';
 import { momentDayMonthYear } from '../../hook/moment/formatDay';
 import { ToastContainer, toast } from 'react-toastify';
+import jsPDF from 'jspdf';
+import { Link } from 'react-router-dom';
 
 function HistoryCV() {
   const { infoUser } = useContext(AuthContext);
@@ -32,6 +34,22 @@ function HistoryCV() {
     // load lại component khi mà reload và listData thay đổi
   }, [reload, listData]);
 
+  const handlePrint = (statusCV) => {
+   
+      //Tạo đối tượng PDF
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+      });
+
+      // Thêm ảnh vào PDF
+      pdf.addImage(statusCV, 'PNG', 0, 0, 210, 297); // 190mm = A4 width - 20mm margin
+      const fileName = 'CV-online.pdf';
+      // Lưu PDF trong callback của html2canvas
+      pdf.save(fileName);
+    
+  };
   return (
     <div className='history_CV'>
       <ToastContainer />
@@ -40,10 +58,10 @@ function HistoryCV() {
       <div className='list_history_components'>
         {listData && Array.isArray(listData) && listData.length > 0 ? (
           listData?.map((cv) => {
-            const src = `data:image/jpeg;base64,${cv.avatarCV}`;
+            // const src = `data:image/jpeg;base64,${cv.avatarCV}`;
             return (
               <div key={`cv-${cv._id}`} className='history_component'>
-                <img src={src} alt='' />
+                <img src={cv.statusCV} alt='mẫu CV' />
                 <div className='custom_history'>
                   <div className='content'>
                     <div className='title'>
@@ -51,10 +69,12 @@ function HistoryCV() {
                     </div>
                     <div className='dateTime'>Ngày cập nhật: {momentDayMonthYear(cv.updatedAt)}</div>
                     <div className='function'>
+                      <Link to ={`/cv/detail/CV5?id=${cv._id}`}>
                       <div className='btn'>
                         <ImPencil2 /> Sửa CV
                       </div>
-                      <div className='btn bg'>
+                      </Link>
+                      <div className='btn bg' onClick={() => handlePrint(cv.statusCV)}>
                         <FiDownload /> Tải xuống
                       </div>
                     </div>

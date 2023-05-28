@@ -17,6 +17,14 @@ const actionUserApi = {
     const request = await authorizedAxiosInstance.post(`http://localhost:5000/api/auth/logout`);
     return request.data;
   },
+
+  updateUser: async (email, data) => {
+    console.log('emaildata',email)
+    const request = await authorizedAxiosInstance.put(`http://localhost:5000/api/user/find-email/${email}`, data);
+    return request.data;
+  },
+
+
 };
 
 export default actionUserApi;

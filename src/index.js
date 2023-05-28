@@ -4,10 +4,14 @@ import App from './App';
 import 'semantic-ui-css/semantic.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
+import globalApp from './globalApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+
+globalApp(() => {
+  return root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+});

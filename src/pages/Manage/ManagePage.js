@@ -5,7 +5,7 @@ import Manage from '../../components/Header/Manage/manage'
 function ManagePage() {
   return (
     <div>
-        <Header/>
+      
         <Manage/>
         <Footer/>
     </div>
