@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import './detailCV5.scss';
 import { BsGenderAmbiguous, BsTelephone } from 'react-icons/bs';
 import { FaBirthdayCake } from 'react-icons/fa';
@@ -14,10 +14,12 @@ import { ModalNoticeNotLogin, ModalNoticeSuccess } from '../items/ModalNotificat
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useCVByID } from '../../../hook/data/getData';
+import { ToastContainer, toast } from 'react-toastify';
+
 function DetailCV5() {
   const [notLoginOpen, setNotLoginOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
-  const { infoUser, isAuthenticated, imgCV } = useContext(AuthContext);
+  const { infoUser, isAuthenticated, imgPublic } = useContext(AuthContext);
   const componentRef = useRef(null);
   const [infoCV, setInfoCV] = useState({
     skills: '',
@@ -36,7 +38,7 @@ function DetailCV5() {
     email: '',
     avatarCV: '',
     statusCV: '',
-    formCV: '',
+    formCV: 'CV5',
     colorCV: '',
   });
 
@@ -51,7 +53,17 @@ function DetailCV5() {
 
   const handleClickChangeColor = (color) => {
     setCurrentColor(color);
+    
   };
+
+  useEffect(() => {
+    if (dataCV) {
+      setCurrentColor(dataCV?.colorCV);
+      setInfoCV(dataCV)
+    }
+  }, [dataCV]);
+
+
 
   const handleSelect = (e) => {
     const selection = window.getSelection();
@@ -64,49 +76,75 @@ function DetailCV5() {
     setInfoCV((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  //   const handleContentEditableChange = (e) => {
-  //     const { className, innerText } = e.target;
-  //     setInfoCV((prevState) => ({
-  //       ...prevState,
-  //       [className]: innerText,
-  //     }));
-  //   };
 
   const submit = async (e) => {
     e.preventDefault();
 
     if (isAuthenticated === true) {
-      infoCV.authorMail = infoUser.email;
-      if (imgCV) {
-        infoCV.avatarCV = imgCV;
+      if (idCV) {
+        try {
+          if (imgPublic) {
+            infoCV.avatarCV = imgPublic;
+          }
+          infoCV.colorCV = currentColor;
+          infoCV.statusCV = '';
+          try {
+            const canvas = await html2canvas(componentRef.current, { scale: 4 });
+            const imgData = canvas.toDataURL('image/jpeg');
+            const formData = new FormData();
+            formData.append('file', imgData);
+            formData.append('upload_preset', 'alw4lzrn'); // Thay YOUR_UPLOAD_PRESET bằng upload preset của bạn từ Cloudinary
+
+            const response = await axios.post('https://api.cloudinary.com/v1_1/dmrgrnxqy/image/upload', formData);
+
+            const imageUrl = response.data.secure_url;
+            // Lưu imageUrl vào cơ sở dữ liệu hoặc sử dụng theo ý muốn của bạn
+            //console.log('URL ảnh:', imageUrl);
+            infoCV.statusCV = imageUrl;
+          } catch (error) {
+            console.error('Lỗi tải lên ảnh statusCV:', error);
+          }
+          const updatedCV = await actionCVApi.updateCVByID(idCV, infoCV);
+          if (updatedCV) {
+            toast.success('Cập nhật thông tin CV thành công!', { position: toast.POSITION.TOP_CENTER });
+          }
+        } catch (err) {
+          alert(`Update CV không thành công!`);
+        }
+      } else {
+        infoCV.authorMail = infoUser.email;
+        if (imgPublic) {
+          infoCV.avatarCV = imgPublic;
+        }
+        infoCV.colorCV = currentColor;
+        infoCV.statusCV = '';
+        try {
+          const canvas = await html2canvas(componentRef.current, { scale: 4 });
+          const imgData = canvas.toDataURL('image/jpeg');
+          const formData = new FormData();
+          formData.append('file', imgData);
+          formData.append('upload_preset', 'alw4lzrn'); // Thay YOUR_UPLOAD_PRESET bằng upload preset của bạn từ Cloudinary
+
+          const response = await axios.post('https://api.cloudinary.com/v1_1/dmrgrnxqy/image/upload', formData);
+
+          const imageUrl = response.data.secure_url;
+          // Lưu imageUrl vào cơ sở dữ liệu hoặc sử dụng theo ý muốn của bạn
+          //console.log('URL ảnh:', imageUrl);
+          infoCV.statusCV = imageUrl;
+        } catch (error) {
+          console.error('Lỗi tải lên ảnh statusCV:', error);
+        }
+
+        actionCVApi
+          .createCV(infoCV)
+          .then(() => {
+            // alert('Lưu mẫu cv thành công, vào lịch sử để xem lại nhé!');
+            setSuccessOpen(true);
+          })
+          .catch((error) => {
+            alert(`Lưu mẫu cv không thành công!`);
+          });
       }
-      infoCV.statusCV = '';
-      try {
-        const canvas = await html2canvas(componentRef.current, { scale: 4 });
-        const imgData = canvas.toDataURL('image/jpeg');
-        const formData = new FormData();
-        formData.append('file', imgData);
-        formData.append('upload_preset', 'alw4lzrn'); // Thay YOUR_UPLOAD_PRESET bằng upload preset của bạn từ Cloudinary
-
-        const response = await axios.post('https://api.cloudinary.com/v1_1/dmrgrnxqy/image/upload', formData);
-
-        const imageUrl = response.data.secure_url;
-        // Lưu imageUrl vào cơ sở dữ liệu hoặc sử dụng theo ý muốn của bạn
-        //console.log('URL ảnh:', imageUrl);
-        infoCV.statusCV = imageUrl;
-      } catch (error) {
-        console.error('Lỗi tải lên ảnh statusCV:', error);
-      }
-
-      actionCVApi
-        .createCV(infoCV)
-        .then(() => {
-          // alert('Lưu mẫu cv thành công, vào lịch sử để xem lại nhé!');
-          setSuccessOpen(true);
-        })
-        .catch((error) => {
-          alert(`Lưu mẫu cv không thành công!`);
-        });
     } else {
       setNotLoginOpen(true);
     }
@@ -126,9 +164,9 @@ function DetailCV5() {
 
       // Thêm ảnh vào PDF
       pdf.addImage(imgData, 'PNG', 0, 0, 210, 297); // 190mm = A4 width - 20mm margin
-      //const fileName = 'CV-online.pdf';
-      // Lưu PDF trong callback của html2canvas
-      //pdf.save(fileName);
+      // const fileName = 'CV-online.pdf';
+      // //Lưu PDF trong callback của html2canvas
+      // pdf.save(fileName);
       const pdfData = pdf.output('blob');
 
       const fileURL = URL.createObjectURL(pdfData);
@@ -147,9 +185,10 @@ function DetailCV5() {
       <ContainerColorBeautiful handleClick={handleClickChangeColor} />
       <div className='Detail_CV5'>
         <div className='Detail_CustomCV5'>
+        <ToastContainer />
           <div ref={componentRef} className='Detail_CustomCV_Update'>
             <div className={`left ${currentColor}`}>
-              <Uploader />
+              <Uploader imgCV={dataCV?.avatarCV} />
               <div
                 suppressContentEditableWarning={true}
                 contentEditable
@@ -228,7 +267,7 @@ function DetailCV5() {
                   data-placeholder={vi['cv.interests']}
                   id='interests'
                 >
-                   {dataCV?.interests}
+                  {dataCV?.interests}
                 </div>
               </div>
             </div>
@@ -247,7 +286,9 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='gender'
-                    >{dataCV?.gender}</span>
+                    >
+                      {dataCV?.gender}
+                    </span>
                   </div>
                 </div>
                 <div className='info'>
@@ -263,7 +304,9 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='phone'
-                    >{dataCV?.phone}</span>
+                    >
+                      {dataCV?.phone}
+                    </span>
                   </div>
                 </div>
                 <div className='info'>
@@ -279,7 +322,9 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='birthday'
-                    >{dataCV?.birthday}</span>
+                    >
+                      {dataCV?.birthday}
+                    </span>
                   </div>
                 </div>
                 <div className='info'>
@@ -295,7 +340,9 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='address'
-                    >{dataCV?.address}</span>
+                    >
+                      {dataCV?.address}
+                    </span>
                   </div>
                 </div>
                 <div className='info'>
@@ -311,7 +358,9 @@ function DetailCV5() {
                       onSelect={handleSelect}
                       onInput={handleChange}
                       id='email'
-                    >{dataCV?.email}</span>
+                    >
+                      {dataCV?.email}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -326,7 +375,9 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.education']}
                   id='education'
-                >{dataCV?.education}</div>
+                >
+                  {dataCV?.education}
+                </div>
               </div>
 
               <div>
@@ -339,7 +390,9 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.certificate']}
                   id='certificate'
-                >{dataCV?.certificate}</div>
+                >
+                  {dataCV?.certificate}
+                </div>
               </div>
 
               <div>
@@ -352,7 +405,9 @@ function DetailCV5() {
                   onInput={handleChange}
                   data-placeholder={vi['cv.experience']}
                   id='experience'
-                >{dataCV?.experience}</div>
+                >
+                  {dataCV?.experience}
+                </div>
               </div>
             </div>
           </div>

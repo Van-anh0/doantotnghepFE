@@ -29,6 +29,11 @@ const actionCVApi = {
     const request = await authorizedAxiosInstance.get(`http://localhost:5000/api/CV/${id}`);
     return request.data;
   },
+
+  updateCVByID: async (id, data) => {
+    const request = await authorizedAxiosInstance.put(`http://localhost:5000/api/CV/${id}`, data);
+    return request.data;
+  },
 };
 
 export default actionCVApi;

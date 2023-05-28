@@ -37,9 +37,7 @@ function Doc6() {
           nghiệp để nhà tuyển dụng nhìn ra sự chỉn chu , đầu tư từng chi tiết nhỏ của bạn.
         </p>
         <p>Bước 4: Nhập thông tin theo những mục đã được chỉ định trong CV.</p>
-        <p>
-          Bước 5: Lưu CV. Bạn có thể xem trước CV bằng cách nhấn nút “Xem” và tải CV về máy dưới dạng .pdf. 
-        </p>
+        <p>Bước 5: Lưu CV. Bạn có thể xem trước CV bằng cách nhấn nút “Xem” và tải CV về máy dưới dạng .pdf.</p>
       </div>
     </div>
   );
