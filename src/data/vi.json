@@ -33,5 +33,6 @@
   "cv.certificate": "CHỨNG CHỈ",
   "cv.skills": "KỸ NĂNG",
   "cv.language": "NGOẠI NGỮ",
-  "cv.interests": "SỞ THÍCH"
+  "cv.interests": "SỞ THÍCH",
+  "document.cv.what":"CV là gì?"
 }

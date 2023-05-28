@@ -6,7 +6,7 @@ import { AuthContext } from '../../../App';
 import axios from 'axios';
 
 
-function Uploader() {
+function Uploader({ imgCV }) {
   const { imgPublic, setImgPublic } = useContext(AuthContext);
   const inputFileRef = useRef(null);
   const [imageURL, setImageURL] = useState('');
@@ -14,6 +14,13 @@ function Uploader() {
   const handleClick = () => {
     inputFileRef.current.click();
   };
+
+  useEffect(() => {
+    console.log('testimg', imageURL)
+    if (imgCV !== null) {
+      setImageURL(imgCV);
+    }
+  }, [imgCV]);
 
   const handleImageChange = async (e) => {
     // const selectedFile = event.target.files[0];
@@ -66,7 +73,7 @@ function Uploader() {
           style={{ display: 'none' }}
           onChange={handleImageChange}
         />
-        {imageURL !== '' ? <img src={imageURL} alt='Uploaded Image' /> : <img src={avatar} alt='Image default' />}
+        {(imageURL !== '' && imageURL !== undefined) ? <img src={imageURL} alt='Uploaded Image' /> : <img src={avatar} alt='Image default' />}
      
         <button className='btn'>Thay ảnh khác</button>
       </form>
