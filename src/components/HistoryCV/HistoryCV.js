@@ -69,7 +69,7 @@ function HistoryCV() {
                     </div>
                     <div className='dateTime'>Ngày cập nhật: {momentDayMonthYear(cv.updatedAt)}</div>
                     <div className='function'>
-                      <Link to ={`/cv/detail/CV5?id=${cv._id}`}>
+                      <Link to ={`/cv/detail/${cv.formCV}?id=${cv._id}`}>
                       <div className='btn'>
                         <ImPencil2 /> Sửa CV
                       </div>
