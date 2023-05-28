@@ -5,6 +5,18 @@
     align-items: center;
     flex-direction: column;
   
+    .list_button_custom{
+      margin-top: 2rem;
+      display: flex;
+      gap:20px;
+      button{
+        background-color: transparent;
+        height: 50px;
+        padding: 0 20px;
+        cursor: pointer;
+        border-radius: 25px;
+      }
+    }
     div {
       outline: none;
     }

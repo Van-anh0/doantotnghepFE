@@ -7,11 +7,19 @@
     margin-left: 250px;
     margin-top: 120px;
     margin-bottom: 50px;
-
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   .Send_User {
     margin-top: 50px;
     margin-left: 50px;
     text-align: center;
+    h2{
+      font-size: 30px;
+    }
+
+    h3{
+      font-size: 24px;
+    }
+   
     .Avata_Infor {
       display: flex;
       margin-left: 100px;
